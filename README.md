@@ -7,7 +7,9 @@ I was inspired by [Legacy Edition Minigames](https://github.com/Legacy-Edition-M
 
 
 ## Todo
-I tried to order them from most important (top) to least important (bottom).
+Within the subcategories I tried to order them from most important (top) to least important (bottom).
+
+The order in which I made the main categories Battle GM, Glide GM, etc. has no specific order
 
 - [ ] Battle Gamemode
   - [ ] Setup Battle plugin
