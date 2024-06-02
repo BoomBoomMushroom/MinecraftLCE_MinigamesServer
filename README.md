@@ -1,9 +1,9 @@
-### Minecraft Legacy Console Edition Minigames Server
+# Minecraft Legacy Console Edition Minigames Server
 This is my recreation of the Minigames from Minecraft LCE. I based it off of my version of the game which comes from the WiiU, which you can find my dump here: https://github.com/BoomBoomMushroom/MinecraftWiiUDump
 I was inspired by [Legacy Edition Minigames](https://github.com/Legacy-Edition-Minigames/Minigames) and some videos on YouTube which brought me nostalgia and a desire to recreate that nostalgia the with my friends on a server.
 
 
-### Todo
+## Todo
 I tried to order them from most important (top) to least important (bottom).
 
 - [ ] Battle Gamemode
