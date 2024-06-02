@@ -31,7 +31,6 @@ I tried to order them from most important (top) to least important (bottom).
   - [ ] Icarus Map
   - [ ] Kraken Map
   - [ ] Yeti Map
-  - [ ] 
   - [ ] Add speed and time at the right side of the screen while playing
   - [ ] Add progress bar through the map by the XP bar while playing
   - [ ] Add Superlatives
