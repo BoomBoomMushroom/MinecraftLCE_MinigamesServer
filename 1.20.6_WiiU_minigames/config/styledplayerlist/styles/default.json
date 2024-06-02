@@ -1,0 +1,16 @@
+{
+  "id": "default",
+  "name": "Default",
+  "header": [
+    "<font:title><color:#fafafa>1\uF8012\uF8013\uF8014<font:default>\n\n\n\n",
+    "<color:#1cf89e>%server:online%<color:#2f4049>/</color>%server:max_players%",
+    ""
+  ],
+  "footer": [
+    "",
+    "<gray>TPS: %server:tps_colored% <dark_gray>| <gray>MSPT: %server:mspt_colored%",
+    "<gray>Ping: <color:#ffba26>%player:ping_colored%</color>"
+  ],
+  "hidden": false,
+  "permission": ""
+}

@@ -1,0 +1,19 @@
+name: LobbyManager
+version: '${project.version}'
+main: me.dillionweaver.lobbymanager.LobbyManager
+api-version: '1.20'
+authors: [Dillion Weaver]
+description: A plugin that connects many worlds together. My version of the multiverse plugin.
+commands:
+  LMLoadWorld:
+    description: Loads a world into memory.
+    usage: /<command>
+  LMRegisterWorld:
+    description: Takes a folder name and world name and adds it to the Menu GUI
+    usage: /<command>
+  LMSendMeToWorld:
+    description: Sends command sender to world.
+    usage: /<command>
+  LMSetLobbyWorld:
+    description: Sets the world for the lobby.
+    usage: /<command>

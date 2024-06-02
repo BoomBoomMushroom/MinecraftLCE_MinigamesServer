@@ -1,0 +1,25 @@
+name: TumbleGamemode
+version: '1.0'
+main: me.dillionweaver.tumblegamemode.TumbleGamemode
+api-version: '1.20'
+authors: [Dillion Weaver]
+description: A plugin that brings back the Tumble Gamemode from the legacy console versions of Minecraft!
+commands:
+  TumbleStartGame:
+    description: Starts the game.
+    usage: /<command>
+  TumbleEndGame:
+    description: Ends the game and can only be used by an Admin.
+    usage: /<command>
+  TumbleRegisterWorld:
+    description: Adds a world to the server and registers it with Glide.
+    usage: /<command>
+  TumbleSendMeToWorld:
+    description: Sends command sender to world.
+    usage: /<command>
+  TumbleTerrain:
+    description: Generates terrain for the tumble game.
+    usage: /<command>
+  TumbleSpectate:
+    description: Enters spectator with an animal.
+    usage: /<command>

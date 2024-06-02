@@ -1,0 +1,12 @@
+me\dillionweaver\lobbymanager\LobbyManager$1.class
+me\dillionweaver\lobbymanager\player\PlayerEvents.class
+me\dillionweaver\lobbymanager\commands\LobbyManagerSendMeToWorldCommand.class
+me\dillionweaver\lobbymanager\LobbyManager.class
+me\dillionweaver\lobbymanager\data\LobbyManagerConstants.class
+me\dillionweaver\lobbymanager\commands\LobbyManagerLoadWorldCommand.class
+me\dillionweaver\lobbymanager\commands\LobbyManagerRegisterWorldCommand.class
+me\dillionweaver\lobbymanager\player\PlayerInteraction.class
+me\dillionweaver\lobbymanager\data\LobbyManagerHelperLists.class
+me\dillionweaver\lobbymanager\commands\LobbyManagerSetLobbyWorldCommand.class
+me\dillionweaver\lobbymanager\data\AdminBoundarySetup.class
+me\dillionweaver\lobbymanager\data\FileSaveData.class

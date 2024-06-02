@@ -1,0 +1,13 @@
+Lobby: -340 58 -341
+Body: 1297 211 1186		// pack 2
+Mobs: 2325 253 1295		
+Shrunk: 3230 244 1072		// pack 2
+Celts: 999 246 1837		// pack 3
+Excalibur: 2219 232 2055	// pack 3
+Icarus: 3041 199 1786		// pack 3
+Dragon: 653 222 334
+Kraken: 1647 142 337
+Yeti: 3116 235 -167
+Canyon: 1201 234 2779		// own music
+Cavern: 2146 223 3066
+Temple: 3138 228 2857
