@@ -22,22 +22,6 @@ public class PlayerInteraction {
         this.main = main;
     }
 
-    public void adminMarkerInteraction(PlayerInteractEvent event){
-        Player player = event.getPlayer();
-        Location blockLocation = event.getClickedBlock().getLocation();
-        if(event.getItem() == null){ return; }
-        Material item = event.getItem().getType();
-
-        if(event.getAction() == Action.LEFT_CLICK_BLOCK){
-            main.adminBoundarySetup.locationA = blockLocation;
-        }
-        if(event.getAction() == Action.RIGHT_CLICK_BLOCK){
-            main.adminBoundarySetup.locationB = blockLocation;
-        }
-
-        main.adminBoundarySetup.updateLocationsAndPrint(player);
-    }
-
     public void setReady(Player player, boolean isReady){
         if(!main.isPlayerInGameWorld(player)){return;}
         main.playerUUID_toIsReady.put(player.getUniqueId().toString(), isReady);

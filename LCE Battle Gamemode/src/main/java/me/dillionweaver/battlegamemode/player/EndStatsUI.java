@@ -85,37 +85,15 @@ public class EndStatsUI {
         ArrayList<String> lore = new ArrayList<>();
 
         if(main.playerUUID_toDidPlayLastRound.get(currentPlayerUUID)) {
-            long timeCompleted = main.playerUUID_toTimeCompleted.get(currentPlayerUUID);
+            int kills = main.playerUUID_toKillsInRound.get(currentPlayerUUID);
             int deaths = main.playerUUID_toDeathsInRound.get(currentPlayerUUID);
             int damage = main.playerUUID_toDamageInRound.get(currentPlayerUUID);
 
-            long bestTimeThisMap = -1L;
+            float kdr = (float) kills / deaths;
 
-            Object bestFromLastMap = main.fileSaveData.getDataFileKey(currentPlayerUUID + "_bestTime_" + main.lastMapId);
-            if(bestFromLastMap == null){
-                bestFromLastMap = -1;
-            } else{
-                bestTimeThisMap = Long.parseLong(bestFromLastMap.toString());
-            }
-
-            boolean wasBestTime = main.playerUUID_toTimeCompleted.get(currentPlayerUUID) <= bestTimeThisMap;
-
-            String rank = "F";
-
-            String finishedTime = "DNF";
-            if (timeCompleted != 0L) {
-                finishedTime = TimeStuff.msToFormat(timeCompleted);
-
-                long AVERAGE_TIME = BattleConstants.mapIdToAverageTimeToCompleteMS[main.lastMapId];
-                rank = CalculateRank.getRank(damage, timeCompleted, AVERAGE_TIME);
-            }
-
-            lore.add(ChatColor.translateAlternateColorCodes('&', "&fRank: &l" + BattleConstants.rankToColorCode.get(rank) + rank));
-            if(wasBestTime){
-                lore.add(ChatColor.translateAlternateColorCodes('&', "&6&lPersonal Best Time!"));
-            }
-            lore.add(ChatColor.translateAlternateColorCodes('&', "Time: " + finishedTime));
+            lore.add(ChatColor.translateAlternateColorCodes('&', "Kills: " + kills));
             lore.add(ChatColor.translateAlternateColorCodes('&', "Deaths: " + deaths));
+            lore.add(ChatColor.translateAlternateColorCodes('&', "KDR: " + kdr));
             lore.add(ChatColor.translateAlternateColorCodes('&', "Damage: " + damage));
         }
         else{

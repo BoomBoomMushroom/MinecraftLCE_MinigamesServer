@@ -4,13 +4,11 @@ import me.dillionweaver.battlegamemode.commands.BattleEndGameCommand;
 import me.dillionweaver.battlegamemode.commands.BattleRegisterWorldCommand;
 import me.dillionweaver.battlegamemode.commands.BattleSendMeToWorldCommand;
 import me.dillionweaver.battlegamemode.commands.BattleStartGameCommand;
-import me.dillionweaver.battlegamemode.data.AdminBoundarySetup;
 import me.dillionweaver.battlegamemode.data.BattleConstants;
 import me.dillionweaver.battlegamemode.data.FileSaveData;
 import me.dillionweaver.battlegamemode.data.TimeStuff;
 import me.dillionweaver.battlegamemode.effects.PlaySoundEffect;
 import me.dillionweaver.battlegamemode.player.*;
-import me.dillionweaver.battlegamemode.effects.VelocityAdding;
 import org.bukkit.*;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
@@ -32,42 +30,30 @@ public final class BattleGamemode extends JavaPlugin {
     public boolean isDisabling = false;
     public boolean canSetHealth = true;
     public float countdown = -1f;
+    public float invulnerabilityTimer = -1f;
     public float returnToLobbyTimer = -1f;
-    public int playersWon = 0;
-    String lastCountdownText = "";
     public long startTimeMS = 0;
     public long endTime = 0;
     public int mapId = 0;
     public int lastMapId = 0;
     public Random random = new Random();
-    public BossBar timeRemainingDisplay = null;
     public World battleWorld;
     public List<Player> playersInWorld = new ArrayList<>();
     public List<Player> playerQueueTpToLobby = new ArrayList<>();
     public String currentMusicName = "";
 
-    public HashMap<String, Integer> playerUUID_toCheckpointId = new HashMap<>();
-    public HashMap<String, Boolean> playerUUID_toHasFinished = new HashMap<>();
-    public HashMap<String, Long> playerUUID_toTimeCompleted = new HashMap<>();
     public HashMap<String, Boolean> playerUUID_toIsReady = new HashMap<>();
     public HashMap<String, Integer> playerUUID_toVotedMapId = new HashMap<>();
-    public HashMap<String, Float> playerUUID_toDamageCooldown = new HashMap<>();
+    public HashMap<String, Boolean> playerUUID_toDidPlayLastRound = new HashMap<>();
     public HashMap<String, Integer> playerUUID_toDeathsInRound = new HashMap<>();
     public HashMap<String, Integer> playerUUID_toDamageInRound = new HashMap<>();
-    public HashMap<String, Boolean> playerUUID_toDidPlayLastRound = new HashMap<>();
-    public HashMap<String, Boolean> playerUUID_isUpdrafting = new HashMap<>();
-    public HashMap<String, Boolean> playerUUID_isBoosting = new HashMap<>();
+    public HashMap<String, Integer> playerUUID_toKillsInRound = new HashMap<>();
+    public HashMap<String, Boolean> playerUUID_isAlive = new HashMap<>();
 
-    public VelocityAdding velocityAdding = new VelocityAdding();
-    public PlayerAreaMath playerAreaMath = new PlayerAreaMath();
-    public PlayerVelocityString playerVelocityString = new PlayerVelocityString();
-    public CheckPlayerGameStatus checkPlayerGameStatus = new CheckPlayerGameStatus(this);
     public PlayerInteraction playerInteraction = new PlayerInteraction(this);
     public EndStatsUI endStatsUI = new EndStatsUI(this);
     public FileSaveData fileSaveData = new FileSaveData(this);
     public PlaySoundEffect playSoundEffect = new PlaySoundEffect(this);
-
-    public AdminBoundarySetup adminBoundarySetup = new AdminBoundarySetup(this);
 
     @Override
     public void onEnable() {
@@ -79,9 +65,6 @@ public final class BattleGamemode extends JavaPlugin {
         server.getPluginCommand("BattleEndGame").setExecutor(new BattleEndGameCommand(this));
         server.getPluginCommand("BattleRegisterWorld").setExecutor(new BattleRegisterWorldCommand(this));
         server.getPluginCommand("BattleSendMeToWorld").setExecutor(new BattleSendMeToWorldCommand(this));
-
-        timeRemainingDisplay = server.createBossBar("", BarColor.WHITE, BarStyle.SOLID);
-        timeRemainingDisplay.setVisible(false);
 
         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
         scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
@@ -160,18 +143,15 @@ public final class BattleGamemode extends JavaPlugin {
 
         String UUID = player.getUniqueId().toString();
 
-        timeRemainingDisplay.addPlayer(player);
-
         player.setGameMode(GameMode.ADVENTURE);
-        checkPlayerGameStatus.updateGameStatus(player, true);
 
         player.getInventory().clear();
 
         canSetHealth = true;
-        player.setMaxHealth(6);
+        player.setMaxHealth(20);
         player.setHealthScaled(true);
-        player.setHealthScale(6);
-        player.setHealth(6);
+        player.setHealthScale(20);
+        player.setHealth(20);
         canSetHealth = false;
 
         player.setSaturatedRegenRate(0);
@@ -184,30 +164,23 @@ public final class BattleGamemode extends JavaPlugin {
         player.setSaturatedRegenRate(0);
         player.setSaturation(0);
 
-        playerUUID_toCheckpointId.put(UUID, 0);
-        playerUUID_toHasFinished.put(UUID, false);
-        playerUUID_toTimeCompleted.put(UUID, 0L);
         playerUUID_toIsReady.put(UUID, false);
         playerUUID_toVotedMapId.put(UUID, 0);
-        playerUUID_toDamageCooldown.put(UUID, 0f);
+        playerUUID_toDidPlayLastRound.put(UUID, false);
         playerUUID_toDeathsInRound.put(UUID, 0);
         playerUUID_toDamageInRound.put(UUID, 0);
-        playerUUID_toDidPlayLastRound.put(UUID, false);
-        playerUUID_isBoosting.put(UUID, false);
-        playerUUID_isUpdrafting.put(UUID, false);
+        playerUUID_toKillsInRound.put(UUID, 0);
+        playerUUID_isAlive.put(UUID, false);
 
         playerInteraction.setReady(player, false);
         teleportPlayerToLobby(player);
 
         if(gameStarted){
-            int[] mapCheckpointIndexes = BattleConstants.checkpointsInMapFromId[mapId];
-            int checkpointIndex = mapCheckpointIndexes[0];
-            int[] checkpoints = BattleConstants.checkpoints[checkpointIndex];
-            playerUUID_toCheckpointId.put(UUID, checkpointIndex);
-            player.teleport(new Location(battleWorld, checkpoints[6], checkpoints[7], checkpoints[8]));
-            player.setRotation(checkpoints[9], checkpoints[10]);
-
-            checkPlayerGameStatus.updateGameStatus(player, true);
+            int[] mapSpawnpointIndexes = BattleConstants.mapIdToSpawnPointIndexes[mapId];
+            int spawnpointIndex = mapSpawnpointIndexes[0];
+            int[] spawnpoint = BattleConstants.allSpawnPoints[spawnpointIndex];
+            player.teleport(new Location(battleWorld, spawnpoint[0], spawnpoint[1], spawnpoint[2]));
+            playerUUID_isAlive.put(UUID, false);
         }
         else{
             givePlayerResultsItem(player);
@@ -220,19 +193,10 @@ public final class BattleGamemode extends JavaPlugin {
             removePlayerFromWorldList(player);
         }
         String UUID = player.getUniqueId().toString();
-        timeRemainingDisplay.removePlayer(player);
 
-        playerUUID_toHasFinished.remove(UUID);
-        playerUUID_toTimeCompleted.remove(UUID);
-        playerUUID_toCheckpointId.remove(UUID);
         playerUUID_toIsReady.remove(UUID);
         playerUUID_toVotedMapId.remove(UUID);
-        playerUUID_toDamageCooldown.remove(UUID);
-        playerUUID_toDeathsInRound.remove(UUID);
-        playerUUID_toDamageInRound.remove(UUID);
         playerUUID_toDidPlayLastRound.remove(UUID);
-        playerUUID_isBoosting.remove(UUID);
-        playerUUID_isUpdrafting.remove(UUID);
     }
 
     public void givePlayerVotingMap(Player player){
@@ -336,14 +300,13 @@ public final class BattleGamemode extends JavaPlugin {
     public void teleportPlayerToLobby(Player player){
         if(!playersInWorld.contains(player)){return;}
 
-        int[] lobbySpawnPoints = BattleConstants.checkpointsInMapFromId[0];
+        int[] lobbySpawnPoints = BattleConstants.mapIdToSpawnPointIndexes[0];
 
         int index = random.nextInt(lobbySpawnPoints.length);
-        int[] position = BattleConstants.checkpoints[lobbySpawnPoints[index]];
+        int[] position = BattleConstants.allSpawnPoints[lobbySpawnPoints[index]];
         Location newLoc = new Location(battleWorld, position[0], position[1], position[2]);
 
         player.teleport(newLoc);
-        //player.setRotation(90, 0);
     }
 
     public void endGame(){
@@ -351,13 +314,10 @@ public final class BattleGamemode extends JavaPlugin {
         gameStarted = false;
         lastMapId = mapId;
         mapId = 0;
-        playersWon = 0;
-
-        timeRemainingDisplay.setVisible(false);
 
         canSetHealth = true;
         for(Player player : playersInWorld){
-            player.setHealth(6);
+            player.setHealth(20);
             playSoundEffect.stopPlayingSoundForPlayer(player, currentMusicName, SoundCategory.MUSIC);
 
             teleportPlayerToLobby(player);
@@ -391,28 +351,12 @@ public final class BattleGamemode extends JavaPlugin {
         // countdown the start of a game
         if(countdown != -1){
             countdown -= 1/20f;
-            int countdownRounded = (int)Math.ceil(countdown);
-            String command = "title @a title ";
-            String countdownText = new String[]{
-                    "0",
-                    "①",
-                    "②",
-                    "③",
-            }[countdownRounded];
-            String countdownTextColor = new String[]{
-                    "white",
-                    "green",
-                    "yellow",
-                    "red",
-            }[countdownRounded];
-            command += "{\"color\":\""+ countdownTextColor +"\",\"text\":\""+ countdownText +"\"}";
-            if(lastCountdownText == countdownTextColor){ return; }
 
-            if(countdownText == "0"){
+            if(countdown <= 0){
                 countdown = -1;
                 gameStarted = true;
                 startTimeMS = TimeStuff.getTimeMS();
-                endTime = startTimeMS + (60*3) * 1000; // 3 minutes in ms
+                endTime = startTimeMS + (60*10) * 1000; // 10 minutes in ms
 
 
                 for(Player playerForSound : playersInWorld) {
@@ -420,26 +364,14 @@ public final class BattleGamemode extends JavaPlugin {
 
                     playSoundEffect.stopPlayingSoundForPlayerByCategory(playerForSound, SoundCategory.MUSIC);
 
+                    /*
                     String[] possibleMusicNames = BattleConstants.mapIdToMusicName[mapId];
                     currentMusicName = possibleMusicNames[random.nextInt(possibleMusicNames.length)];
                     playSoundEffect.playSoundEffectForPlayer(playerForSound, currentMusicName, SoundCategory.MUSIC);
+                    */
                 }
                 return;
             }
-
-            for(Player playerForSound : playersInWorld) {
-                playSoundEffect.playSoundEffectForPlayer(playerForSound, "minecraft:block.lever.click", SoundCategory.MASTER);
-            }
-
-            server.dispatchCommand(server.getConsoleSender(), command);
-            lastCountdownText = countdownTextColor;
-        }
-
-
-        if(!hasGameStarted()){
-            // Game not started! Wait...
-            timeRemainingDisplay.setVisible(false);
-            return;
         }
 
         if(returnToLobbyTimer != -1f) {
@@ -456,7 +388,7 @@ public final class BattleGamemode extends JavaPlugin {
         long timeUntilEnd = (endTime - TimeStuff.getTimeMS()) / 1000;
         if(timeUntilEnd <= 0 && returnToLobbyTimer == -1){
             // time ran out!
-            String message = "&3" + BattleConstants.pluginMessagePrefix + "Time has run out! Returning to lobby.";
+            String message = "&3" + BattleConstants.pluginMessagePrefix + "Round end!";
             String coloredMessage = ChatColor.translateAlternateColorCodes('&', message);
             broadcast(coloredMessage);
 
@@ -464,16 +396,9 @@ public final class BattleGamemode extends JavaPlugin {
             return;
         }
         if(timeUntilEnd <= 60){
+            // https://www.youtube.com/watch?v=wOOyl_TQjEk (video of Battle gameplay)
             // display that somewhere (preferably at the top)
-            String timeLeftText = (int)Math.floor(timeUntilEnd) + " seconds to reach the end!";
-            timeRemainingDisplay.setTitle(timeLeftText);
-            timeRemainingDisplay.setVisible(true);
-
-            //long currentTimeDiff = endTime - TimeStuff.getTimeMS();
-            //long startTimeDiff = endTime - startTimeMS;
-
-            double percent = (double) timeUntilEnd / 60;
-            timeRemainingDisplay.setProgress( percent );
+            String timeLeftText = "Round ends in " + (int)Math.floor(timeUntilEnd) + " seconds(s)...";
         }
 
         canSetHealth = false;
@@ -485,19 +410,12 @@ public final class BattleGamemode extends JavaPlugin {
         for(Player player : playersInWorld) {
             String UUID = player.getUniqueId().toString();
 
-            if( !checkPlayerGameStatus.stillPlayingGame(player) ){ continue; }
+            if( !playerUUID_isAlive.get(UUID) ){ continue; }
+
             playerUUID_toDidPlayLastRound.put(UUID, true);
             playerIsPlaying = true;
 
             player.setExp(0);
         }
-
-        if(!playerIsPlaying && returnToLobbyTimer == -1){
-            returnToLobbyTimer = 3f;
-            String message = "&3" + BattleConstants.pluginMessagePrefix + "Everyone has made it to the end! Returning to the lobby soon.";
-            String coloredMessage = ChatColor.translateAlternateColorCodes('&', message);
-            broadcast(coloredMessage);
-        }
-
     }
 }

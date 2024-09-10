@@ -92,28 +92,20 @@ public class BattleStartGameCommand implements CommandExecutor {
             player.teleport(newLocation);
             player.setInvisible(false);
             player.setGameMode(GameMode.ADVENTURE);
-            player.setHealth(6);
+            player.setHealth(20);
             player.getInventory().clear();
             player.closeInventory();
-
-            main.checkPlayerGameStatus.updateGameStatus(player, true);
             player.setGliding(false);
 
             String UUID = player.getUniqueId().toString();
 
-            main.playerUUID_toCheckpointId.put(UUID, BattleConstants.checkpointsInMapFromId[mapId][0] );
-            main.playerUUID_toHasFinished.put(UUID, false);
             main.playerUUID_toVotedMapId.put(UUID, 0);
-
-            main.playerUUID_toDamageInRound.put(UUID, 0);
-            main.playerUUID_toDeathsInRound.put(UUID, 0);
-            main.playerUUID_toTimeCompleted.put(UUID, 0L);
-            main.playerUUID_isBoosting.put(UUID, false);
+            main.playerUUID_isAlive.put(UUID, true);
         }
 
-        main.countdown = 3;
+        main.countdown = 10;
+        main.invulnerabilityTimer = 15;
         main.mapId = mapId;
-        main.playersWon = 0;
 
         return true;
     }

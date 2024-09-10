@@ -3,7 +3,6 @@ package me.dillionweaver.battlegamemode.player;
 import me.dillionweaver.battlegamemode.BattleGamemode;
 import me.dillionweaver.battlegamemode.data.BattleConstants;
 import me.dillionweaver.battlegamemode.data.BattleHelperLists;
-import me.dillionweaver.battlegamemode.effects.VelocityAdding;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
@@ -102,7 +101,6 @@ public class PlayerEvents implements Listener {
         Material itemType = holdingItem.getType();
 
         if (itemType == BattleConstants.adminSelectionMakerItem && player.isOp()) {
-            main.playerInteraction.adminMarkerInteraction(event);
             event.setCancelled(true);
         }
         if (itemType == Material.MAP) {
@@ -300,34 +298,6 @@ public class PlayerEvents implements Listener {
 
         Player player = event.getPlayer();
         String UUID = player.getUniqueId().toString();
-
-        if(!player.isGliding()){
-            if(main.hasGameStarted() && !main.playerUUID_toHasFinished.get(UUID)) {
-                //main.playerHitWall(player, true);
-                main.velocityAdding.addVelocity(player, VelocityAdding.VECTOR_UP, .8, true, false);
-            }
-        };
-
-
-        Location location = player.getLocation();
-        float margin = 0.35f;
-        Vector[] blocksToCheck = new Vector[]{
-                new Vector(0, -margin, 0), // down
-                new Vector(0, margin, 0), // up
-
-                new Vector(0, 0, -margin), // north
-                new Vector(0, 0, margin),// south
-
-                new Vector(-margin, 0, 0), // west
-                new Vector(margin, 0, 0), // east
-        };
-
-        for(Vector checkVec : blocksToCheck){
-            Location newLocation = location.toVector().add(checkVec).toLocation( location.getWorld() ); // add the checkVec to the location
-            Block block = newLocation.getBlock();
-            if( (block.getType().isSolid() && block.isPassable()==false) || block.isLiquid()){
-                main.playerHitWall(player, false);
-            }
-        }
+        
     }
 }

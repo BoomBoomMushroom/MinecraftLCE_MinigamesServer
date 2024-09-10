@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "custom": {
+      "trigger": "switchableresourcepacks:failed"
+    }
+  },
+  "requirements": [
+    [
+      "custom"
+    ]
+  ]
+}

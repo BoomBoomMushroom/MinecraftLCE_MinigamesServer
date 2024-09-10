@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "custom": {
+      "trigger": "switchableresourcepacks:started"
+    }
+  },
+  "requirements": [
+    [
+      "custom"
+    ]
+  ]
+}

@@ -33,7 +33,7 @@ public class BattleConstants {
     public static final int setReadyItemSlot = 7;
     public static final int mapVotingItemSlot = 8;
 
-    public static final String pluginMessagePrefix = "[Batle] ";
+    public static final String pluginMessagePrefix = "[Battle] ";
     public static final String votingMenuTitle = "Vote for a map";
     public static final String endResultTitle = "Results";
 
