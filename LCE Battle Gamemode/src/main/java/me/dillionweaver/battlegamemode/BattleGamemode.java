@@ -349,17 +349,17 @@ public final class BattleGamemode extends JavaPlugin {
         playerQueueTpToLobby.clear();
 
         // countdown the start of a game
-        if(countdown != -1){
-            countdown -= 1/20f;
+        if(countdown != -1) {
+            countdown -= 1 / 20f;
 
-            if(countdown <= 0){
+            if (countdown <= 0) {
                 countdown = -1;
                 gameStarted = true;
                 startTimeMS = TimeStuff.getTimeMS();
-                endTime = startTimeMS + (60*10) * 1000; // 10 minutes in ms
+                endTime = startTimeMS + (60 * 10) * 1000; // 10 minutes in ms
 
 
-                for(Player playerForSound : playersInWorld) {
+                for (Player playerForSound : playersInWorld) {
                     playSoundEffect.playSoundEffectForPlayer(playerForSound, "minecraft:glide.cd_zero", SoundCategory.MASTER);
 
                     playSoundEffect.stopPlayingSoundForPlayerByCategory(playerForSound, SoundCategory.MUSIC);
@@ -372,6 +372,10 @@ public final class BattleGamemode extends JavaPlugin {
                 }
                 return;
             }
+        }
+
+        if(gameStarted == false){
+            return;
         }
 
         if(returnToLobbyTimer != -1f) {
