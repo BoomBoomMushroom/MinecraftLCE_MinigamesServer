@@ -1,6 +1,0 @@
-replaceitem block 420 78 -979 slot.container 0 keep potions:invisible
-replaceitem block 420 78 -979 slot.container 7 keep battle:tnt2 3 12 {"minecraft:can_place_on":{"blocks":["sand","planks","carpet","grass","log","tallgrass","double_plant","stone","cobblestone","glowstone","diamond_block","gold_block","emerald_block","redstone_block","oak_stairs","spruce_stairs","wooden_slab","double_wooden_slab","log2","dirt","fence","coal_block","diamond_ore","gold_ore","emerald_ore","redstone_ore","coal_ore","stone_slab","double_stone_slab","clay","ladder","leaves","sponge","trapdoor","wooden_pressure_plate","iron_bars","nether_brick_fence","cobblestone_wall","lit_redstone_ore","web","light_weighted_pressure_plate","wool","bookshelf"]}}
-replaceitem block 420 78 -979 slot.container 10 keep splash_potion 1 23
-replaceitem block 420 78 -979 slot.container 15 keep wooden_sword
-replaceitem block 420 78 -979 slot.container 18 keep splash_potion 1 27
-replaceitem block 420 78 -979 slot.container 23 keep apple
