@@ -1,0 +1,14 @@
+
+[
+	
+	{
+		"pack_id" : "0575c61f-b5db-4b7f-1951-ffda2904861e",
+		"version" : [ 0, 0, 4 ]
+	},
+	
+	{
+		"pack_id" : "0575c61f-a5da-4b7f-9961-ffda2904861e",
+		"subpack" : "SmallInv",
+		"version" : [ 0, 0, 13 ]
+	}
+]

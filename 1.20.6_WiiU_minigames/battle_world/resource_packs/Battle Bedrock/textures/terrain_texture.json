@@ -1,0 +1,117 @@
+{
+  "resource_pack_name": "vanilla",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "bedrock": {
+      "textures": [
+        "textures/blocks/bedrock",
+        "textures/blocks/furnace_top",
+        "textures/blocks/furnace_top",
+        "textures/blocks/furnace_top",
+        "textures/blocks/furnace_top"
+      ]
+    },
+    "bedrock_N": {
+      "textures": [
+        "textures/blocks/bedrock",
+        "textures/blocks/furnace_side",
+        "textures/blocks/furnace_front_off",
+        "textures/blocks/furnace_side",
+        "textures/blocks/furnace_side"
+      ]
+    },
+    "bedrock_S": {
+      "textures": [
+        "textures/blocks/bedrock",
+        "textures/blocks/furnace_side",
+        "textures/blocks/furnace_side",
+        "textures/blocks/furnace_front_off",
+        "textures/blocks/furnace_side"
+      ]
+    },
+    "bedrock_E": {
+      "textures": [
+        "textures/blocks/bedrock",
+        "textures/blocks/furnace_side",
+        "textures/blocks/furnace_side",
+        "textures/blocks/furnace_side",
+        "textures/blocks/furnace_front_off"
+      ]
+    },
+    "bedrock_W": {
+      "textures": [
+        "textures/blocks/bedrock",
+        "textures/blocks/furnace_front_off",
+        "textures/blocks/furnace_side",
+        "textures/blocks/furnace_side",
+        "textures/blocks/furnace_side"
+      ]
+    },
+	"dried_kelp_block_top": {
+      "textures": "textures/blocks/crafting_table_top"
+    },
+    "dried_kelp_block_side_a": {
+      "textures": "textures/blocks/crafting_table_front"
+    },
+    "dried_kelp_block_side_b": {
+      "textures": "textures/blocks/crafting_table_side"
+    },
+	"battle:bed1": {
+      "textures": "textures/entity/bed/red"
+    },
+    "leaves2": {
+      "textures": [
+        "textures/blocks/leaves_acacia",
+        "textures/blocks/leaves_jungle",
+        "textures/blocks/leaves_acacia_opaque",
+        "textures/blocks/leaves_jungle_opaque"
+      ]
+    },
+    "leaves_carried2": {
+      "textures": [
+        "textures/blocks/leaves_acacia_carried",
+        "textures/blocks/leaves_jungle_carried",
+        "textures/blocks/leaves_acacia_carried",
+        "textures/blocks/leaves_jungle_carried"
+      ]
+    },
+	"stripped_oak_log_top": {
+      "textures": "textures/blocks/log_oak_top"
+    },
+    "stripped_oak_log_side": {
+      "textures": "textures/blocks/log_oak"
+    },
+    "stripped_birch_log_top": {
+      "textures": "textures/blocks/log_birch_top"
+    },
+    "stripped_birch_log_side": {
+      "textures": "textures/blocks/log_birch"
+    },
+    "stripped_dark_oak_log_top": {
+      "textures": "textures/blocks/log_big_oak_top"
+    },
+    "stripped_dark_oak_log_side": {
+      "textures": "textures/blocks/log_big_oak"
+    },
+    "stripped_acacia_log_top": {
+      "textures": "textures/blocks/log_acacia_top"
+    },
+    "stripped_acacia_log_side": {
+      "textures": "textures/blocks/log_acacia"
+    },
+    "stripped_jungle_log_top": {
+      "textures": "textures/blocks/log_jungle_top"
+    },
+    "stripped_jungle_log_side": {
+      "textures": "textures/blocks/log_jungle"
+    },
+    "stripped_spruce_log_top": {
+      "textures": "textures/blocks/log_spruce_top"
+    },
+    "stripped_spruce_log_side": {
+      "textures": "textures/blocks/log_spruce"
+    }
+  }
+}

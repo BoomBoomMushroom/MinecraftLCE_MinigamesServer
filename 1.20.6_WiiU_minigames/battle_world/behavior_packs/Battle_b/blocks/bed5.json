@@ -1,0 +1,45 @@
+{
+	"format_version": "1.16.200",
+	"minecraft:block": {
+		"description": {
+			"identifier": "battle:bed5"
+		},
+		"components": {
+			"minecraft:destroy_time": 1,
+			"minecraft:entity_collision": {
+				"origin": [
+					-8,
+					0,
+					-8
+				],
+				"size": [
+					16,
+					9,
+					16
+				]
+			},
+			"minecraft:pick_collision": {
+				"origin": [
+					-8,
+					0,
+					-8
+				],
+				"size": [
+					16,
+					9,
+					16
+				]
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "battle:bed1",
+					"render_method": "alpha_test",
+					"ambient_occlusion": false
+				}
+			},
+			"minecraft:geometry": "geometry.battle.bed5",
+			"minecraft:block_light_absorption": 0.1
+		},
+		"events": {}
+	}
+}

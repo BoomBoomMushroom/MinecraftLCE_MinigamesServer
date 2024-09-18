@@ -1,0 +1,17 @@
+{
+    "format_version": 1,
+    "header": {
+        "description": "Minecraft Console Battle Minigame ported by Ultmate_Mario!",
+        "name": "Battle Music",
+        "uuid": "0575c61f-b5db-4b7f-1951-ffda2904861e",
+        "version": [0, 0, 4]
+    },
+    "modules": [
+        {
+            "description": "Minecraft Console Battle Minigame ported by Ultmate_Mario!",
+            "type": "resources",
+            "uuid": "53644fac-a276-42e5-843f-a3c6f159a9ab",
+            "version": [0, 0, 4]
+        }
+    ]
+}

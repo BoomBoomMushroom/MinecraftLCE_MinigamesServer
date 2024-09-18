@@ -1,0 +1,97 @@
+//bridge-file-version: #0
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.kill": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"kill": "query.variant == 101"
+						}
+					],
+					"on_entry": [
+						"@s removekill"
+					]
+				},
+				"kill": {
+					"transitions": [
+						{
+							"default": "query.variant != 101"
+						}
+					],
+					"on_entry": [
+						"/scoreboard players add @s kills 1",
+						"@s removekill"
+					]
+				}
+			}
+		},
+		"controller.animation.death": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"death": "!query.is_alive"
+						}
+					]
+				},
+				"death": {
+					"transitions": [
+						{
+							"default": "query.is_alive"
+						}
+					],
+					"on_entry": [
+						"/playsound battle.death @a ~ ~ ~ 1000",
+						"/scoreboard players add @s alive -1",
+						"/scoreboard players set @s spectateMode 0"
+					]
+				}
+			}
+		},
+		"controller.animation.info": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"death": "query.variant == 2"
+						},
+						{
+							"kill": "query.variant == 3"
+						}
+					]
+				},
+				"death": {
+					"transitions": [
+						{
+							"default": "query.variant != 2"
+						}
+					],
+					"on_entry": [
+						"/scoreboard objectives no sidebar deaths"
+					]
+				},
+				"kill": {
+					"transitions": [
+						{
+							"default": "query.variant != 3"
+						}
+					],
+					"on_entry": [
+						"/scoreboard objectives no sidebar kills"
+					]
+				}
+			}
+		},
+		"controller.animation.leave": {
+			"states": {
+				"default": {
+					"on_exit": [
+						"/scoreboard players set @s alive -3"
+					]
+				}
+			}
+		}
+	}
+}

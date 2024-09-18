@@ -1,0 +1,28 @@
+//bridge-file-version: #1
+{
+	"format_version": "1.16.100",
+	"minecraft:item": {
+		"description": {
+			"identifier": "battle:settings"
+		},
+		"components": {
+			"minecraft:on_use": {
+				"on_use": {
+					"event": "settings"
+				}
+			},
+			"minecraft:icon": {
+				"texture": "settings"
+			}
+		},
+		"events": {
+			"settings": {
+				"run_command": {
+					"command": [
+						"dialogue open @e[type=npc,x=-346,y=44,z=-314,dx=1,dy=1,dz=1,c=1] @s"
+					]
+				}
+			}
+		}
+	}
+}

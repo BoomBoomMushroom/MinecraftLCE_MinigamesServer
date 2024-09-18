@@ -1,0 +1,44 @@
+{
+    "format_version": 1,
+    "header": {
+        "description": "Minecraft Console Battle Minigame ported by Ultmate_Mario!",
+        "name": "Battle for Bedrock",
+        "uuid": "0575c61f-a5da-4b7f-9961-ffda2904861e",
+        "version": [0, 0, 13]
+    },
+	"metadata" : {
+      "authors" : [ "UltiMario" ],
+      "url" : "https://ultmatemario.wixsite.com/ultmatemario"
+   },
+    "modules": [
+        {
+            "description": "Minecraft Console Battle Minigame ported by Ultmate_Mario!",
+            "type": "resources",
+            "uuid": "53644fac-a276-42e5-843f-a3c6f159a9ab",
+            "version": [0, 0, 13],
+            "min_engine_version": [1, 14, 0]
+        }
+    ],
+    "subpacks": [
+	  {
+          "folder_name": "BigInv16",
+          "name": "Small Inventory Off with 16 Players",
+          "memory_tier": 1
+      },
+	  {
+          "folder_name": "SmallInv16",
+          "name": "Small Inventory On with 16 Players",
+          "memory_tier": 1
+      },
+      {
+          "folder_name": "BigInv",
+          "name": "Small Inventory Off",
+          "memory_tier": 1
+      },
+      {
+          "folder_name": "SmallInv",
+          "name": "Small Inventory On",
+          "memory_tier": 1
+      }
+   ]
+}

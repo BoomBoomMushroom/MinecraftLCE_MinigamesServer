@@ -1,0 +1,65 @@
+{
+	"format_version": "1.16.200",
+	"minecraft:block": {
+		"description": {
+			"identifier": "battle:tnt2"
+		},
+		"components": {
+			"minecraft:on_placed": {
+				"event": "minecraft:spawn_tnt"
+			},
+			"minecraft:on_player_placing": {
+				"event": "minecraft:spawn_tnt"
+			},
+			"minecraft:entity_collision": {
+				"origin": [
+					-8,
+					0,
+					-8
+				],
+				"size": [
+					16,
+					16,
+					16
+				]
+			},
+			"minecraft:pick_collision": {
+				"origin": [
+					-8,
+					0,
+					-8
+				],
+				"size": [
+					16,
+					16,
+					16
+				]
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "battle:tnt2",
+					"render_method": "opaque"
+				}
+			}
+		},
+		"events": {
+			"minecraft:spawn_tnt": {
+				"sequence": [
+					{
+						"decrement_stack": {
+							"ignore_game_mode": false
+						}
+					},
+					{
+						"run_command": {
+							"command": [
+								"summon tnt ~ ~-0.4 ~",
+								"playsound random.fuse @a ~ ~ ~ 1000"
+							]
+						}
+					}
+				]
+			}
+		}
+	}
+}
