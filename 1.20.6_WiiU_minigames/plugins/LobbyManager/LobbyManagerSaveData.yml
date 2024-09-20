@@ -1,6 +1,8 @@
 LobbyWorld: world
 §b§lLobby: world
 §b§lLobby_icon: NETHER_STAR
+§b§lBattle: battle_world
+§b§lBattle_icon: DIAMOND_SWORD
 §b§lTumble: tumble_world
 §b§lTumble_icon: DIAMOND_SHOVEL
 §b§lGlide: glide_world

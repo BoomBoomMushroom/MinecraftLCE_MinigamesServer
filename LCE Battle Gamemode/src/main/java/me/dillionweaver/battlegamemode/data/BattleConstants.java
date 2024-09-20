@@ -11,6 +11,7 @@ public class BattleConstants {
     };
     public static final int[][] allSpawnPoints = new int[][] {
             new int[] { -340, 58, -341 }, // Lobby
+            
     };
     public static final int[][] mapIdToSpawnPointIndexes = new int[][] {
             new int[] { 0 },
