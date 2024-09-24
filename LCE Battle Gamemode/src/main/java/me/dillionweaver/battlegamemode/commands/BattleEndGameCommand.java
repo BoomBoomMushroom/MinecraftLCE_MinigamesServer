@@ -17,7 +17,7 @@ public class BattleEndGameCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         if(commandSender instanceof Player){
             if(!main.isPlayerInGameWorld((Player)commandSender)){
-                String message = "&c"+ BattleConstants.pluginMessagePrefix +"You must be in the Elytra world to run this command!";
+                String message = "&c"+ BattleConstants.pluginMessagePrefix +"You must be in the Battle world to run this command!";
                 String coloredMessage = ChatColor.translateAlternateColorCodes('&', message);
                 commandSender.sendMessage(coloredMessage);
                 return false;

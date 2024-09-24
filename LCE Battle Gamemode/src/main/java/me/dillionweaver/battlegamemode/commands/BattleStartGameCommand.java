@@ -72,16 +72,13 @@ public class BattleStartGameCommand implements CommandExecutor {
 
         int checkpointIndex = 0;
         for(Player player : main.playersInWorld){
-            if(checkpointIndex >= allCheckpoints.length){
-                checkpointIndex = 0;
-            }
-
             int[] checkpoint = BattleConstants.allSpawnPoints[allCheckpoints[checkpointIndex]];
             float x = checkpoint[0];
             float y = checkpoint[1];
             float z = checkpoint[2];
 
             checkpointIndex++;
+            checkpointIndex %= allCheckpoints.length;
 
             Location newLocation = player.getLocation();
             newLocation.setYaw(v);
