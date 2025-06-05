@@ -35,6 +35,7 @@ public final class LobbyManager extends JavaPlugin {
         server.getPluginCommand("LMSetLobbyWorld").setExecutor(new LobbyManagerSetLobbyWorldCommand(this));
         server.getPluginCommand("LMRegisterWorld").setExecutor(new LobbyManagerRegisterWorldCommand(this));
         server.getPluginCommand("LMSendMeToWorld").setExecutor(new LobbyManagerSendMeToWorldCommand(this));
+        server.getPluginCommand("LMRegenerateLobby").setExecutor(new LobbyManagerRegenerateLobby(this));
 
         // load all worlds we're responsible for!
         for(Object objKey : fileSaveData.getDataFileKeys()){
@@ -42,24 +43,7 @@ public final class LobbyManager extends JavaPlugin {
             if(key.endsWith("_icon")){continue;}
             String worldName = (String) fileSaveData.getDataFileKey(key);
             World loadedWorld = loadWorld(worldName);
-
-            loadedWorld.setDifficulty(Difficulty.PEACEFUL);
-            loadedWorld.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
-            loadedWorld.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
-            loadedWorld.setGameRule(GameRule.DO_MOB_LOOT, false);
-            loadedWorld.setGameRule(GameRule.DO_MOB_SPAWNING, false);
-            loadedWorld.setGameRule(GameRule.DO_INSOMNIA, false);
-            loadedWorld.setGameRule(GameRule.DO_PATROL_SPAWNING, false);
-            loadedWorld.setGameRule(GameRule.DO_TRADER_SPAWNING, false);
-            loadedWorld.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
-            loadedWorld.setGameRule(GameRule.MOB_EXPLOSION_DROP_DECAY, false);
-            loadedWorld.setGameRule(GameRule.TNT_EXPLOSION_DROP_DECAY, false);
-            loadedWorld.setGameRule(GameRule.TNT_EXPLOSION_DROP_DECAY, false);
-            loadedWorld.setGameRule(GameRule.DO_FIRE_TICK, false);
-            loadedWorld.setGameRule(GameRule.MOB_GRIEFING, false);
-            loadedWorld.setGameRule(GameRule.NATURAL_REGENERATION, false);
-            loadedWorld.setTime(0);
-            loadedWorld.setStorm(false);
+            setWorldRulesAndSettings(loadedWorld);
         }
 
         String lobbyManagerWorldName = (String)fileSaveData.getDataFileKey(LobbyManagerConstants.lobbyWorldKeyName);
@@ -71,12 +55,7 @@ public final class LobbyManager extends JavaPlugin {
         }
         WorldCreator creator = new WorldCreator(lobbyManagerWorldName);
         lobbyWorld = server.createWorld(creator);
-
-        lobbyWorld.setDifficulty(Difficulty.PEACEFUL);
-        lobbyWorld.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
-        lobbyWorld.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
-        lobbyWorld.setTime(0);
-        lobbyWorld.setStorm(false);
+        setWorldRulesAndSettings(lobbyWorld);
 
         if(lobbyWorld == null){
             String message = "&c"+ LobbyManagerConstants.pluginMessagePrefix +"Lobby world not set! Plugin will not work without a world set! Set it using /sendmetoworld world_folder_name";
@@ -93,6 +72,7 @@ public final class LobbyManager extends JavaPlugin {
             }
         }, 0L, 20L);
 
+        // this will regenerate the lobby because there will be a first to join, and if no one is there then someone will join and it'll regenerate then
         for(Player player : server.getOnlinePlayers()) {
             playerOnJoin(player);
         }
@@ -100,12 +80,32 @@ public final class LobbyManager extends JavaPlugin {
         System.out.println(LobbyManagerConstants.pluginMessagePrefix + "Lobby plugin started up!");
     }
 
+    public void setWorldRulesAndSettings(World world){
+        world.setDifficulty(Difficulty.PEACEFUL);
+        world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+        world.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
+        world.setGameRule(GameRule.DO_MOB_LOOT, false);
+        world.setGameRule(GameRule.DO_MOB_SPAWNING, false);
+        world.setGameRule(GameRule.DO_INSOMNIA, false);
+        world.setGameRule(GameRule.DO_PATROL_SPAWNING, false);
+        world.setGameRule(GameRule.DO_TRADER_SPAWNING, false);
+        world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
+        world.setGameRule(GameRule.MOB_EXPLOSION_DROP_DECAY, false);
+        world.setGameRule(GameRule.TNT_EXPLOSION_DROP_DECAY, false);
+        world.setGameRule(GameRule.TNT_EXPLOSION_DROP_DECAY, false);
+        world.setGameRule(GameRule.DO_FIRE_TICK, false);
+        world.setGameRule(GameRule.MOB_GRIEFING, false);
+        world.setGameRule(GameRule.NATURAL_REGENERATION, false);
+        world.setTime(6000); // Set to noon (6000) instead of morning (0)
+        world.setStorm(false);
+    }
+
+
     public void update(){
         for(Player player : playerQueueToLobby){
             teleportPlayerToLobby(player);
         }
         playerQueueToLobby.clear();
-
 
         for(Player player : server.getOnlinePlayers()){
             ItemStack firstStackItem = player.getInventory().getItem(LobbyManagerConstants.setLobbyHopItemSlot);
@@ -125,6 +125,10 @@ public final class LobbyManager extends JavaPlugin {
     public World loadWorld(String worldName){
         WorldCreator creator = new WorldCreator(worldName);
         return server.createWorld(creator);
+    }
+
+    public void regenerateLobby(){
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "LMRegenerateLobby");
     }
 
     @Override
@@ -171,6 +175,12 @@ public final class LobbyManager extends JavaPlugin {
         player.setSaturation(0);
 
         teleportPlayerToLobby(player);
+
+        // player is added to the list in the first line of this function
+        if(playersInWorld.size() == 1){
+            // the first player joined, let's regenerate the lobby
+            regenerateLobby();
+        }
     }
 
     public void playerOnLeft(Player player){

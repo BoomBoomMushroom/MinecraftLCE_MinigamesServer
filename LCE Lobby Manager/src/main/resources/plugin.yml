@@ -17,3 +17,6 @@ commands:
   LMSetLobbyWorld:
     description: Sets the world for the lobby.
     usage: /<command>
+  LMRegenerateLobby:
+    description: Regenerates the lobby area.
+    usage: /<command>

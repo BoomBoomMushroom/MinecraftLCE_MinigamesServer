@@ -27,7 +27,7 @@ public class LobbyManagerRegisterWorldCommand implements CommandExecutor {
             return false;
         }
         if(args.length != 3){
-            String message = "&c"+ LobbyManagerConstants.pluginMessagePrefix +"Too many or too few arguments. Just one is needed. /registerworld folder_name world_name LOGO_ITEM_NAME";
+            String message = "&c"+ LobbyManagerConstants.pluginMessagePrefix +"Too many or too few arguments. Three are needed. /registerworld folder_name world_name LOGO_ITEM_NAME";
             String coloredMessage = ChatColor.translateAlternateColorCodes('&', message);
             commandSender.sendMessage(coloredMessage);
             return false;

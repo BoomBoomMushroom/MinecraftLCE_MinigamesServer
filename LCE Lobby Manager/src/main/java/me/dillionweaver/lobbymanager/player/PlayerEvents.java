@@ -3,25 +3,22 @@ package me.dillionweaver.lobbymanager.player;
 import me.dillionweaver.lobbymanager.LobbyManager;
 import me.dillionweaver.lobbymanager.data.LobbyManagerConstants;
 import me.dillionweaver.lobbymanager.data.LobbyManagerHelperLists;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.WorldCreator;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockFadeEvent;
-import org.bukkit.event.block.BlockIgniteEvent;
-import org.bukkit.event.block.BlockSpreadEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityRegainHealthEvent;
-import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.block.*;
+import org.bukkit.event.entity.*;
+import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.*;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import static me.dillionweaver.lobbymanager.data.LobbyManagerConstants.cannotDropItems;
 
@@ -79,6 +76,25 @@ public class PlayerEvents implements Listener {
     }
 
     @EventHandler
+    public void onHangingBreakByEntity(HangingBreakByEntityEvent event){
+        if(event.getEntity().getLocation().getWorld().getUID() != main.lobbyWorld.getUID()){ return; } // Not our world so idc
+        if(event.getCause() == HangingBreakEvent.RemoveCause.ENTITY){
+            // im assuming the entity breaking this is a player, only other possible one could be a ranged mob hitting it with their projectile but i don't see that happening.
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onManipulateArmorStand(PlayerArmorStandManipulateEvent event){
+        Player player = event.getPlayer();
+        if(main.isPlayerInGameWorld(player) == false){ return; } // idc they're not in our world
+
+        if(event.getPlayer().isOp() == false){ // not admin
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
     public void playerBreaksBlock(BlockBreakEvent event){
         Player player = event.getPlayer();
         if(!main.isPlayerInGameWorld(player)){return;}
@@ -96,23 +112,56 @@ public class PlayerEvents implements Listener {
         ItemStack holdingItem = player.getInventory().getItemInMainHand();
         Material itemType = holdingItem.getType();
 
-        if(itemType == Material.NETHER_STAR){
+        // is the action is physical (like walking over something I presume) then its most likely a pressure plate or something so do not open the nether star gui
+        Action playerAction = event.getAction();
+        if(itemType == Material.NETHER_STAR && playerAction != Action.PHYSICAL){
             main.playerInteraction.openLobbySwitchGUI(player);
             event.setCancelled(true);
             return;
         }
 
         if(!main.isPlayerInGameWorld(player)){return;}
+        if(playerAction == Action.RIGHT_CLICK_BLOCK){
+            Material clickedBlockMaterial = event.getClickedBlock().getType();
+            if(clickedBlockMaterial == Material.JUKEBOX && player.getGameMode() == GameMode.ADVENTURE){
+                GameMode previousGameMode = player.getGameMode();
+                player.setGameMode(GameMode.SURVIVAL);
+                BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+                scheduler.scheduleSyncDelayedTask(this.main, new Runnable() {
+                    @Override
+                    public void run() {
+                        // Your per-tick update logic here
+                        Bukkit.getConsoleSender().sendMessage(player.getGameMode().toString());
+                        Bukkit.getConsoleSender().sendMessage(previousGameMode.toString());
+                        player.setGameMode( previousGameMode );
+                        Bukkit.getConsoleSender().sendMessage(player.getGameMode().toString());
+                    }
+                }, 1L);
 
-
-        if(!player.isOp()){
-            Block clickedBlock = event.getClickedBlock();
-            if(clickedBlock==null){return;}
-            Material blockType = clickedBlock.getType();
-            if(blockType == Material.NOTE_BLOCK || blockType == Material.CHEST){}
-            else{
-                event.setCancelled(LobbyManagerConstants.stopPlayerFromInteractingWithWhateverTheyWant);
+                event.setCancelled(false);
+                return;
             }
+
+
+            Material[] notAllowedToOpen = new Material[]{ Material.HOPPER, Material.DISPENSER };
+            if(LobbyManagerHelperLists.bracketListIncludes(notAllowedToOpen, clickedBlockMaterial) && player.isOp()==false){
+                event.setCancelled(true);
+                return;
+            }
+        }
+
+        if(player.isOp()){ return; }
+
+        Block clickedBlock = event.getClickedBlock();
+        if(clickedBlock==null){return;}
+        Material blockType = clickedBlock.getType();
+        Material[] allowedToInteract = new Material[]{
+                Material.NOTE_BLOCK,
+                Material.CHEST,
+                Material.JUKEBOX,
+        };
+        if(LobbyManagerHelperLists.bracketListIncludes(allowedToInteract, blockType) == false){
+            event.setCancelled(LobbyManagerConstants.stopPlayerFromInteractingWithWhateverTheyWant);
         }
     }
 
@@ -142,10 +191,10 @@ public class PlayerEvents implements Listener {
     public void dropItem(PlayerDropItemEvent event){
         Player player = event.getPlayer();
 
+        if(!main.isPlayerInGameWorld(player)){return;}
         if(!player.isOp()){
             event.setCancelled(LobbyManagerConstants.stopPlayerFromInteractingWithWhateverTheyWant);
         }
-        if(!main.isPlayerInGameWorld(player)){return;}
 
         Material itemType = event.getItemDrop().getItemStack().getType();
         if(LobbyManagerHelperLists.bracketListIncludes(cannotDropItems, itemType)){
@@ -156,9 +205,12 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event){
         Player player = (Player)event.getWhoClicked();
+        Inventory clickedInventory = event.getClickedInventory();
+        boolean isPlayerInventory = clickedInventory.getType() == InventoryType.PLAYER;
+
         if(event.getView().getTitle().equals(LobbyManagerConstants.lobbySwitchGuiName)){
             int slotId = event.getSlot();
-            ItemStack itemBeforeClick = event.getClickedInventory().getItem(slotId);
+            ItemStack itemBeforeClick = clickedInventory.getItem(slotId);
             if(itemBeforeClick != null) {
                 String itemName = itemBeforeClick.getItemMeta().getItemName();
                 String worldName = (String) main.fileSaveData.getDataFileKey(itemName);
@@ -194,7 +246,7 @@ public class PlayerEvents implements Listener {
             event.setCancelled(true);
         }
 
-        if(LobbyManagerHelperLists.bracketListIncludes(cannotSwitchSlots, event.getSlot())){
+        if(LobbyManagerHelperLists.bracketListIncludes(cannotSwitchSlots, event.getSlot()) && isPlayerInventory){
             event.setCancelled(true);
         }
     }
@@ -211,24 +263,18 @@ public class PlayerEvents implements Listener {
         Location toLoc = event.getTo();
         World toWorld = toLoc.getWorld();
 
-        boolean doWeOwnPlayer = main.playersInWorld.contains(player);
+        boolean isPlayerInOurWorld = main.playersInWorld.contains(player);
 
-        if(!main.isPlayerInGameWorld(player)){
-            if(toWorld.getUID() == main.lobbyWorld.getUID() && !doWeOwnPlayer){
+        if(isPlayerInOurWorld == false){
+            if(toWorld.getUID() == main.lobbyWorld.getUID()){
                 main.playerOnJoin(player);
                 main.playerQueueToLobby.add(player);
             }
-            else{
-                return;
-            }
+            else{ return; }
         }
         else{
-            if(toWorld.getUID() != main.lobbyWorld.getUID()){
-                main.playerOnLeft(player);
-            }
-            else{
-                return;
-            }
+            if(toWorld.getUID() != main.lobbyWorld.getUID()){ main.playerOnLeft(player); }
+            else{ return; }
         }
     }
 
