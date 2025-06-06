@@ -4,10 +4,12 @@ me\dillionweaver\lobbymanager\commands\LobbyManagerSendMeToWorldCommand.class
 me\dillionweaver\lobbymanager\LobbyManager.class
 me\dillionweaver\lobbymanager\data\LobbyManagerConstants.class
 me\dillionweaver\lobbymanager\commands\LobbyManagerLoadWorldCommand.class
+me\dillionweaver\lobbymanager\data\FoodBalance.class
+me\dillionweaver\lobbymanager\data\LobbyManagerHelper.class
 me\dillionweaver\lobbymanager\commands\LobbyManagerRegisterWorldCommand.class
+me\dillionweaver\lobbymanager\data\WorldRules.class
 me\dillionweaver\lobbymanager\player\PlayerInteraction.class
 me\dillionweaver\lobbymanager\commands\LobbyManagerRegenerateLobby.class
-me\dillionweaver\lobbymanager\data\LobbyManagerHelperLists.class
 me\dillionweaver\lobbymanager\commands\LobbyManagerSetLobbyWorldCommand.class
 me\dillionweaver\lobbymanager\player\PlayerEvents$1.class
 me\dillionweaver\lobbymanager\data\AdminBoundarySetup.class

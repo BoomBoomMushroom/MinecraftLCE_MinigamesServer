@@ -10,9 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public final class LobbyManager extends JavaPlugin {
     public Server server;
@@ -24,6 +22,7 @@ public final class LobbyManager extends JavaPlugin {
     public FileSaveData fileSaveData = new FileSaveData(this);
     public PlayerInteraction playerInteraction = new PlayerInteraction(this);
     public AdminBoundarySetup adminBoundarySetup = new AdminBoundarySetup(this);
+    public Map<String, World> worldNameToWorld = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -43,6 +42,8 @@ public final class LobbyManager extends JavaPlugin {
             if(key.endsWith("_icon")){continue;}
             String worldName = (String) fileSaveData.getDataFileKey(key);
             World loadedWorld = loadWorld(worldName);
+            worldNameToWorld.put(worldName, loadedWorld);
+            Bukkit.getConsoleSender().sendMessage(LobbyManagerConstants.pluginMessagePrefix + " Added key (" + worldName + ") to worldNameToWorld");
             setWorldRulesAndSettings(loadedWorld);
         }
 
@@ -55,6 +56,7 @@ public final class LobbyManager extends JavaPlugin {
         }
         WorldCreator creator = new WorldCreator(lobbyManagerWorldName);
         lobbyWorld = server.createWorld(creator);
+        worldNameToWorld.put("lobby", lobbyWorld);
         setWorldRulesAndSettings(lobbyWorld);
 
         if(lobbyWorld == null){
@@ -128,17 +130,25 @@ public final class LobbyManager extends JavaPlugin {
     }
 
     public void regenerateLobby(){
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "LMRegenerateLobby");
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "LMRegenerateLobby lobby");
     }
 
     @Override
     public void onDisable() {
         isDisabling = true;
-        for(Player player : playersInWorld) {
+        for(Player player : lobbyWorld.getPlayers()) {
             playerOnLeft(player);
         }
 
         System.out.println(LobbyManagerConstants.pluginMessagePrefix + "Lobby plugin stopped!");
+    }
+
+    public boolean isLocationInLobbyBounds(Location location){
+        double[] position = new double[]{ location.getX(), location.getY(), location.getZ() };
+        return LobbyManagerHelper.coordinateInsideBoundingBox(position, LobbyManagerConstants.lobbyCornerToPaste, LobbyManagerConstants.otherLobbyCorner);
+    }
+    public boolean isPlayerInLobbyBounds(Player player){
+        return isLocationInLobbyBounds(player.getLocation());
     }
 
     public boolean isPlayerInGameWorld(Player player){
@@ -179,7 +189,7 @@ public final class LobbyManager extends JavaPlugin {
         // player is added to the list in the first line of this function
         if(playersInWorld.size() == 1){
             // the first player joined, let's regenerate the lobby
-            regenerateLobby();
+            //regenerateLobby();
         }
     }
 
@@ -210,7 +220,9 @@ public final class LobbyManager extends JavaPlugin {
 
         int index = random.nextInt(lobbySpawnPoints.length);
         int[] position = LobbyManagerConstants.lobbySpawnPoints[index];
-        Location newLoc = new Location(lobbyWorld, position[0], position[1], position[2]);
+        World playerWorld = player.getWorld();
+        //Location newLoc = new Location(lobbyWorld, position[0], position[1], position[2]);
+        Location newLoc = new Location(playerWorld, position[0], position[1], position[2]);
 
         player.teleport(newLoc);
         //player.setRotation(90, 0);

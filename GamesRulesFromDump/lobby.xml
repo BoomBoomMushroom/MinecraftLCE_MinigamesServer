@@ -7,40 +7,40 @@
   <DestroyPermissions mode="WhiteList"/>
   <PlacePermissions mode="WhiteList"/>
   <UsePermissions mode="WhiteList">
-	<!-- Bow -->
-	<Exception id="261" />
-	<!-- Arrow -->
-  <Exception id="262" />
-    <!-- Fishing rod -->
-    <Exception id="346" />
-    <!-- Snowballs -->
-    <Exception id="332" />
-    <!-- Elytra -->
-    <Exception id="443" />
-  <!-- Ward Disc -->
-  <Exception id="2265" />
-    <!-- 13 Disc -->
-    <Exception id="2256" />
-    <!-- Strad Disc -->
-    <Exception id="2264" />
-    <!-- 11 Disc -->
-    <Exception id="2266" />
-    <!-- Where are we now Disc -->
-    <Exception id="2267" />
-    <!-- Cat Disc -->
-    <Exception id="2257" />
-    <!-- Blocks Disc -->
-    <Exception id="2258" />
-    <!-- Chirp Disc -->
-    <Exception id="2259" />
-    <!-- Far Disc -->
-    <Exception id="2260" />
-    <!-- Stal Disc -->
-    <Exception id="2263" />
-    <!-- Mall Disc -->
-    <Exception id="2261" />
-    <!-- Mellohi Disc -->
-    <Exception id="2262" />
+    <!-- Bow -->
+    <Exception id="261" />
+    <!-- Arrow -->
+    <Exception id="262" />
+      <!-- Fishing rod -->
+      <Exception id="346" />
+      <!-- Snowballs -->
+      <Exception id="332" />
+      <!-- Elytra -->
+      <Exception id="443" />
+    <!-- Ward Disc -->
+    <Exception id="2265" />
+      <!-- 13 Disc -->
+      <Exception id="2256" />
+      <!-- Strad Disc -->
+      <Exception id="2264" />
+      <!-- 11 Disc -->
+      <Exception id="2266" />
+      <!-- Where are we now Disc -->
+      <Exception id="2267" />
+      <!-- Cat Disc -->
+      <Exception id="2257" />
+      <!-- Blocks Disc -->
+      <Exception id="2258" />
+      <!-- Chirp Disc -->
+      <Exception id="2259" />
+      <!-- Far Disc -->
+      <Exception id="2260" />
+      <!-- Stal Disc -->
+      <Exception id="2263" />
+      <!-- Mall Disc -->
+      <Exception id="2261" />
+      <!-- Mellohi Disc -->
+      <Exception id="2262" />
   </UsePermissions>
   <BlockUsePermissions mode="WhiteList">
     <!-- Oak Door -->

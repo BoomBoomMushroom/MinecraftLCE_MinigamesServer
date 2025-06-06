@@ -264,221 +264,221 @@
 
 		<Variants>
       
-      <Variant id="0"> <!-- Standard -->
-        <!-- Food -->
-        <MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
-        <MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
-        <StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
-        <SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
-        <ExhaustionDrop>    4.0       </ExhaustionDrop>           <!-- Default 4.0 -->
-        <HealthTickCount>   40        </HealthTickCount>          <!-- Default 80 -->
-        <HealthTickCountSaturated> 40 </HealthTickCountSaturated> <!-- Default 10 -->
-        <HealLevel>         4         </HealLevel>                <!-- Default 18 -->
-        <StarveLevel>       0         </StarveLevel>              <!-- Default 0 -->
-        <SprintLevel>       0         </SprintLevel>              <!-- Default 6 -->
+			<Variant id="0"> <!-- Standard -->
+				<!-- Food -->
+				<MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
+				<MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
+				<StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
+				<SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
+				<ExhaustionDrop>    4.0       </ExhaustionDrop>           <!-- Default 4.0 -->
+				<HealthTickCount>   40        </HealthTickCount>          <!-- Default 80 -->
+				<HealthTickCountSaturated> 40 </HealthTickCountSaturated> <!-- Default 10 -->
+				<HealLevel>         4         </HealLevel>                <!-- Default 18 -->
+				<StarveLevel>       0         </StarveLevel>              <!-- Default 0 -->
+				<SprintLevel>       0         </SprintLevel>              <!-- Default 6 -->
 
-        <!-- Action Exhaustion -->
-        <ExhaustionHeal>        4.0       </ExhaustionHeal>       <!-- Default 6.0 -->
-        <ExhaustionJump>        0.2       </ExhaustionJump>       <!-- Default 0.05 -->
-        <ExhaustionSprintJump>  0.8       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
-        <ExhaustionMine>        0.025     </ExhaustionMine>       <!-- Default 0.005 -->
-        <ExhaustionAttack>      0.3       </ExhaustionAttack>     <!-- Default 0.1 -->
-        <ExhaustionDamage>      0.1       </ExhaustionDamage>     <!-- Default 0.1 -->
-        <ExhaustionSneak>       0.04      </ExhaustionSneak>      <!-- Default 0.0 -->
-        <ExhaustionWalk>        0.04      </ExhaustionWalk>       <!-- Default 0.0 -->
-        <ExhaustionSprint>      0.085     </ExhaustionSprint>     <!-- Default 0.1 -->
-        <ExhaustionSwim>        0.03      </ExhaustionSwim>       <!-- Default 0.01 -->
-        <ExhaustionIdle>        0.004     </ExhaustionIdle>       <!-- Default 0.0 -->
-      </Variant>
+				<!-- Action Exhaustion -->
+				<ExhaustionHeal>        4.0       </ExhaustionHeal>       <!-- Default 6.0 -->
+				<ExhaustionJump>        0.2       </ExhaustionJump>       <!-- Default 0.05 -->
+				<ExhaustionSprintJump>  0.8       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
+				<ExhaustionMine>        0.025     </ExhaustionMine>       <!-- Default 0.005 -->
+				<ExhaustionAttack>      0.3       </ExhaustionAttack>     <!-- Default 0.1 -->
+				<ExhaustionDamage>      0.1       </ExhaustionDamage>     <!-- Default 0.1 -->
+				<ExhaustionSneak>       0.04      </ExhaustionSneak>      <!-- Default 0.0 -->
+				<ExhaustionWalk>        0.04      </ExhaustionWalk>       <!-- Default 0.0 -->
+				<ExhaustionSprint>      0.085     </ExhaustionSprint>     <!-- Default 0.1 -->
+				<ExhaustionSwim>        0.03      </ExhaustionSwim>       <!-- Default 0.01 -->
+				<ExhaustionIdle>        0.004     </ExhaustionIdle>       <!-- Default 0.0 -->
+			</Variant>
       
 			<Variant id="1"> <!-- Fast Hunger; less punishment for action, triple idle hunger. -->
-        <!-- Food -->
-        <MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
-        <MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
-        <StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
-        <SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
-        <ExhaustionDrop>    5.0       </ExhaustionDrop>           <!-- Default 4.0 -->
-        <HealthTickCount>   60        </HealthTickCount>          <!-- Default 80 -->
-        <HealthTickCountSaturated> 40 </HealthTickCountSaturated> <!-- Default 10 -->
-        <HealLevel>         4         </HealLevel>                <!-- Default 18 -->
-        <StarveLevel>       0         </StarveLevel>              <!-- Default 0 -->
-        <SprintLevel>       0         </SprintLevel>              <!-- Default 6 -->
+				<!-- Food -->
+				<MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
+				<MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
+				<StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
+				<SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
+				<ExhaustionDrop>    5.0       </ExhaustionDrop>           <!-- Default 4.0 -->
+				<HealthTickCount>   60        </HealthTickCount>          <!-- Default 80 -->
+				<HealthTickCountSaturated> 40 </HealthTickCountSaturated> <!-- Default 10 -->
+				<HealLevel>         4         </HealLevel>                <!-- Default 18 -->
+				<StarveLevel>       0         </StarveLevel>              <!-- Default 0 -->
+				<SprintLevel>       0         </SprintLevel>              <!-- Default 6 -->
 
-        <!-- Action Exhaustion -->
-        <ExhaustionHeal>        5.0       </ExhaustionHeal>       <!-- Default 6.0 -->
-        <ExhaustionJump>        0.2       </ExhaustionJump>       <!-- Default 0.05 -->
-        <ExhaustionSprintJump>  0.8       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
-        <ExhaustionMine>        0.025     </ExhaustionMine>       <!-- Default 0.005 -->
-        <ExhaustionAttack>      0.3       </ExhaustionAttack>     <!-- Default 0.1 -->
-        <ExhaustionDamage>      0.1       </ExhaustionDamage>     <!-- Default 0.1 -->
-        <ExhaustionSneak>       0.0       </ExhaustionSneak>      <!-- Default 0.0 -->
-        <ExhaustionWalk>        0.0       </ExhaustionWalk>       <!-- Default 0.0 -->
-        <ExhaustionSprint>      0.05      </ExhaustionSprint>     <!-- Default 0.1 -->
-        <ExhaustionSwim>        0.0       </ExhaustionSwim>       <!-- Default 0.01 -->
-        <ExhaustionIdle>        0.012     </ExhaustionIdle>       <!-- Default 0.0 -->
+				<!-- Action Exhaustion -->
+				<ExhaustionHeal>        5.0       </ExhaustionHeal>       <!-- Default 6.0 -->
+				<ExhaustionJump>        0.2       </ExhaustionJump>       <!-- Default 0.05 -->
+				<ExhaustionSprintJump>  0.8       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
+				<ExhaustionMine>        0.025     </ExhaustionMine>       <!-- Default 0.005 -->
+				<ExhaustionAttack>      0.3       </ExhaustionAttack>     <!-- Default 0.1 -->
+				<ExhaustionDamage>      0.1       </ExhaustionDamage>     <!-- Default 0.1 -->
+				<ExhaustionSneak>       0.0       </ExhaustionSneak>      <!-- Default 0.0 -->
+				<ExhaustionWalk>        0.0       </ExhaustionWalk>       <!-- Default 0.0 -->
+				<ExhaustionSprint>      0.05      </ExhaustionSprint>     <!-- Default 0.1 -->
+				<ExhaustionSwim>        0.0       </ExhaustionSwim>       <!-- Default 0.01 -->
+				<ExhaustionIdle>        0.012     </ExhaustionIdle>       <!-- Default 0.0 -->
 			</Variant>
       
 			<Variant id="2"> <!-- Fast Healing -->
-        <!-- Food -->
-        <MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
-        <MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
-        <StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
-        <SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
-        <ExhaustionDrop>    4.0       </ExhaustionDrop>           <!-- Default 4.0 -->
-        <HealthTickCount>   20        </HealthTickCount>          <!-- Default 80 -->
-        <HealthTickCountSaturated> 10 </HealthTickCountSaturated> <!-- Default 10 -->
-        <HealLevel>         8         </HealLevel>                <!-- Default 18 -->
-        <StarveLevel>       0         </StarveLevel>              <!-- Default 0 -->
-        <SprintLevel>       0         </SprintLevel>              <!-- Default 6 -->
+				<!-- Food -->
+				<MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
+				<MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
+				<StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
+				<SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
+				<ExhaustionDrop>    4.0       </ExhaustionDrop>           <!-- Default 4.0 -->
+				<HealthTickCount>   20        </HealthTickCount>          <!-- Default 80 -->
+				<HealthTickCountSaturated> 10 </HealthTickCountSaturated> <!-- Default 10 -->
+				<HealLevel>         8         </HealLevel>                <!-- Default 18 -->
+				<StarveLevel>       0         </StarveLevel>              <!-- Default 0 -->
+				<SprintLevel>       0         </SprintLevel>              <!-- Default 6 -->
 
-        <!-- Action Exhaustion -->
-        <ExhaustionHeal>        5.0       </ExhaustionHeal>       <!-- Default 6.0 -->
-        <ExhaustionJump>        0.2       </ExhaustionJump>       <!-- Default 0.05 -->
-        <ExhaustionSprintJump>  0.8       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
-        <ExhaustionMine>        0.025     </ExhaustionMine>       <!-- Default 0.005 -->
-        <ExhaustionAttack>      0.3       </ExhaustionAttack>     <!-- Default 0.1 -->
-        <ExhaustionDamage>      0.1       </ExhaustionDamage>     <!-- Default 0.1 -->
-        <ExhaustionSneak>       0.0       </ExhaustionSneak>      <!-- Default 0.0 -->
-        <ExhaustionWalk>        0.0       </ExhaustionWalk>       <!-- Default 0.0 -->
-        <ExhaustionSprint>      0.05      </ExhaustionSprint>     <!-- Default 0.1 -->
-        <ExhaustionSwim>        0.0       </ExhaustionSwim>       <!-- Default 0.01 -->
-        <ExhaustionIdle>        0.004     </ExhaustionIdle>       <!-- Default 0.0 -->
+				<!-- Action Exhaustion -->
+				<ExhaustionHeal>        5.0       </ExhaustionHeal>       <!-- Default 6.0 -->
+				<ExhaustionJump>        0.2       </ExhaustionJump>       <!-- Default 0.05 -->
+				<ExhaustionSprintJump>  0.8       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
+				<ExhaustionMine>        0.025     </ExhaustionMine>       <!-- Default 0.005 -->
+				<ExhaustionAttack>      0.3       </ExhaustionAttack>     <!-- Default 0.1 -->
+				<ExhaustionDamage>      0.1       </ExhaustionDamage>     <!-- Default 0.1 -->
+				<ExhaustionSneak>       0.0       </ExhaustionSneak>      <!-- Default 0.0 -->
+				<ExhaustionWalk>        0.0       </ExhaustionWalk>       <!-- Default 0.0 -->
+				<ExhaustionSprint>      0.05      </ExhaustionSprint>     <!-- Default 0.1 -->
+				<ExhaustionSwim>        0.0       </ExhaustionSwim>       <!-- Default 0.01 -->
+				<ExhaustionIdle>        0.004     </ExhaustionIdle>       <!-- Default 0.0 -->
 			</Variant>
       
-      <Variant id="3"> <!-- No Starving -->
-        <!-- Food -->
-        <MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
-        <MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
-        <StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
-        <SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
-        <ExhaustionDrop>    4.0       </ExhaustionDrop>           <!-- Default 4.0 -->
-        <HealthTickCount>   40        </HealthTickCount>          <!-- Default 80 -->
-        <HealthTickCountSaturated> 40 </HealthTickCountSaturated> <!-- Default 10 -->
-        <HealLevel>         4         </HealLevel>                <!-- Default 18 -->
-        <StarveLevel>       -1         </StarveLevel>              <!-- Default 0 -->
-        <SprintLevel>       0         </SprintLevel>              <!-- Default 6 -->
+			<Variant id="3"> <!-- No Starving -->
+				<!-- Food -->
+				<MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
+				<MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
+				<StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
+				<SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
+				<ExhaustionDrop>    4.0       </ExhaustionDrop>           <!-- Default 4.0 -->
+				<HealthTickCount>   40        </HealthTickCount>          <!-- Default 80 -->
+				<HealthTickCountSaturated> 40 </HealthTickCountSaturated> <!-- Default 10 -->
+				<HealLevel>         4         </HealLevel>                <!-- Default 18 -->
+				<StarveLevel>       -1         </StarveLevel>              <!-- Default 0 -->
+				<SprintLevel>       0         </SprintLevel>              <!-- Default 6 -->
 
-        <!-- Action Exhaustion -->
-        <ExhaustionHeal>        4.0       </ExhaustionHeal>       <!-- Default 6.0 -->
-        <ExhaustionJump>        0.2       </ExhaustionJump>       <!-- Default 0.05 -->
-        <ExhaustionSprintJump>  0.8       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
-        <ExhaustionMine>        0.025     </ExhaustionMine>       <!-- Default 0.005 -->
-        <ExhaustionAttack>      0.3       </ExhaustionAttack>     <!-- Default 0.1 -->
-        <ExhaustionDamage>      0.1       </ExhaustionDamage>     <!-- Default 0.1 -->
-        <ExhaustionSneak>       0.04      </ExhaustionSneak>      <!-- Default 0.0 -->
-        <ExhaustionWalk>        0.04      </ExhaustionWalk>       <!-- Default 0.0 -->
-        <ExhaustionSprint>      0.085     </ExhaustionSprint>     <!-- Default 0.1 -->
-        <ExhaustionSwim>        0.03      </ExhaustionSwim>       <!-- Default 0.01 -->
-        <ExhaustionIdle>        0.004     </ExhaustionIdle>       <!-- Default 0.0 -->
-      </Variant>
+				<!-- Action Exhaustion -->
+				<ExhaustionHeal>        4.0       </ExhaustionHeal>       <!-- Default 6.0 -->
+				<ExhaustionJump>        0.2       </ExhaustionJump>       <!-- Default 0.05 -->
+				<ExhaustionSprintJump>  0.8       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
+				<ExhaustionMine>        0.025     </ExhaustionMine>       <!-- Default 0.005 -->
+				<ExhaustionAttack>      0.3       </ExhaustionAttack>     <!-- Default 0.1 -->
+				<ExhaustionDamage>      0.1       </ExhaustionDamage>     <!-- Default 0.1 -->
+				<ExhaustionSneak>       0.04      </ExhaustionSneak>      <!-- Default 0.0 -->
+				<ExhaustionWalk>        0.04      </ExhaustionWalk>       <!-- Default 0.0 -->
+				<ExhaustionSprint>      0.085     </ExhaustionSprint>     <!-- Default 0.1 -->
+				<ExhaustionSwim>        0.03      </ExhaustionSwim>       <!-- Default 0.01 -->
+				<ExhaustionIdle>        0.004     </ExhaustionIdle>       <!-- Default 0.0 -->
+			</Variant>
       
-      <Variant id="4"> <!-- Always Healing -->
-        <!-- Food -->
-        <MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
-        <MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
-        <StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
-        <SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
-        <ExhaustionDrop>    4.0       </ExhaustionDrop>           <!-- Default 4.0 -->
-        <HealthTickCount>   100       </HealthTickCount>          <!-- Default 80 -->
-        <HealthTickCountSaturated> 40 </HealthTickCountSaturated> <!-- Default 10 -->
-        <HealLevel>         0         </HealLevel>                <!-- Default 18 -->
-        <StarveLevel>       -1        </StarveLevel>              <!-- Default 0 -->
-        <SprintLevel>       6         </SprintLevel>              <!-- Default 6 -->
+			<Variant id="4"> <!-- Always Healing -->
+				<!-- Food -->
+				<MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
+				<MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
+				<StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
+				<SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
+				<ExhaustionDrop>    4.0       </ExhaustionDrop>           <!-- Default 4.0 -->
+				<HealthTickCount>   100       </HealthTickCount>          <!-- Default 80 -->
+				<HealthTickCountSaturated> 40 </HealthTickCountSaturated> <!-- Default 10 -->
+				<HealLevel>         0         </HealLevel>                <!-- Default 18 -->
+				<StarveLevel>       -1        </StarveLevel>              <!-- Default 0 -->
+				<SprintLevel>       6         </SprintLevel>              <!-- Default 6 -->
 
-        <!-- Action Exhaustion -->
-        <ExhaustionHeal>        4.0       </ExhaustionHeal>       <!-- Default 6.0 -->
-        <ExhaustionJump>        0.2       </ExhaustionJump>       <!-- Default 0.05 -->
-        <ExhaustionSprintJump>  0.8       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
-        <ExhaustionMine>        0.025     </ExhaustionMine>       <!-- Default 0.005 -->
-        <ExhaustionAttack>      0.3       </ExhaustionAttack>     <!-- Default 0.1 -->
-        <ExhaustionDamage>      0.1       </ExhaustionDamage>     <!-- Default 0.1 -->
-        <ExhaustionSneak>       0.04      </ExhaustionSneak>      <!-- Default 0.0 -->
-        <ExhaustionWalk>        0.04      </ExhaustionWalk>       <!-- Default 0.0 -->
-        <ExhaustionSprint>      0.085     </ExhaustionSprint>     <!-- Default 0.1 -->
-        <ExhaustionSwim>        0.03      </ExhaustionSwim>       <!-- Default 0.01 -->
-        <ExhaustionIdle>        0.004     </ExhaustionIdle>       <!-- Default 0.0 -->
-      </Variant>
+				<!-- Action Exhaustion -->
+				<ExhaustionHeal>        4.0       </ExhaustionHeal>       <!-- Default 6.0 -->
+				<ExhaustionJump>        0.2       </ExhaustionJump>       <!-- Default 0.05 -->
+				<ExhaustionSprintJump>  0.8       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
+				<ExhaustionMine>        0.025     </ExhaustionMine>       <!-- Default 0.005 -->
+				<ExhaustionAttack>      0.3       </ExhaustionAttack>     <!-- Default 0.1 -->
+				<ExhaustionDamage>      0.1       </ExhaustionDamage>     <!-- Default 0.1 -->
+				<ExhaustionSneak>       0.04      </ExhaustionSneak>      <!-- Default 0.0 -->
+				<ExhaustionWalk>        0.04      </ExhaustionWalk>       <!-- Default 0.0 -->
+				<ExhaustionSprint>      0.085     </ExhaustionSprint>     <!-- Default 0.1 -->
+				<ExhaustionSwim>        0.03      </ExhaustionSwim>       <!-- Default 0.01 -->
+				<ExhaustionIdle>        0.004     </ExhaustionIdle>       <!-- Default 0.0 -->
+			</Variant>
       
-      <Variant id="5"> <!-- No Hunger -->
-        <!-- Food -->
-        <MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
-        <MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
-        <StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
-        <SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
-        <ExhaustionDrop>    4.0       </ExhaustionDrop>           <!-- Default 4.0 -->
-        <HealthTickCount>   40        </HealthTickCount>          <!-- Default 80 -->
-        <HealthTickCountSaturated> 40 </HealthTickCountSaturated> <!-- Default 10 -->
-        <HealLevel>         21        </HealLevel>                <!-- Default 18 -->
-        <StarveLevel>       0         </StarveLevel>              <!-- Default 0 -->
-        <SprintLevel>       0         </SprintLevel>              <!-- Default 6 -->
+			<Variant id="5"> <!-- No Hunger -->
+				<!-- Food -->
+				<MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
+				<MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
+				<StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
+				<SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
+				<ExhaustionDrop>    4.0       </ExhaustionDrop>           <!-- Default 4.0 -->
+				<HealthTickCount>   40        </HealthTickCount>          <!-- Default 80 -->
+				<HealthTickCountSaturated> 40 </HealthTickCountSaturated> <!-- Default 10 -->
+				<HealLevel>         21        </HealLevel>                <!-- Default 18 -->
+				<StarveLevel>       0         </StarveLevel>              <!-- Default 0 -->
+				<SprintLevel>       0         </SprintLevel>              <!-- Default 6 -->
 
-        <!-- Action Exhaustion -->
-        <ExhaustionHeal>        0.0       </ExhaustionHeal>       <!-- Default 6.0 -->
-        <ExhaustionJump>        0.0       </ExhaustionJump>       <!-- Default 0.05 -->
-        <ExhaustionSprintJump>  0.0       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
-        <ExhaustionMine>        0.0       </ExhaustionMine>       <!-- Default 0.005 -->
-        <ExhaustionAttack>      0.0       </ExhaustionAttack>     <!-- Default 0.1 -->
-        <ExhaustionDamage>      0.0       </ExhaustionDamage>     <!-- Default 0.1 -->
-        <ExhaustionSneak>       0.0       </ExhaustionSneak>      <!-- Default 0.0 -->
-        <ExhaustionWalk>        0.0       </ExhaustionWalk>       <!-- Default 0.0 -->
-        <ExhaustionSprint>      0.0       </ExhaustionSprint>     <!-- Default 0.1 -->
-        <ExhaustionSwim>        0.0       </ExhaustionSwim>       <!-- Default 0.01 -->
-        <ExhaustionIdle>        0.0       </ExhaustionIdle>       <!-- Default 0.0 -->
-      </Variant>
+				<!-- Action Exhaustion -->
+				<ExhaustionHeal>        0.0       </ExhaustionHeal>       <!-- Default 6.0 -->
+				<ExhaustionJump>        0.0       </ExhaustionJump>       <!-- Default 0.05 -->
+				<ExhaustionSprintJump>  0.0       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
+				<ExhaustionMine>        0.0       </ExhaustionMine>       <!-- Default 0.005 -->
+				<ExhaustionAttack>      0.0       </ExhaustionAttack>     <!-- Default 0.1 -->
+				<ExhaustionDamage>      0.0       </ExhaustionDamage>     <!-- Default 0.1 -->
+				<ExhaustionSneak>       0.0       </ExhaustionSneak>      <!-- Default 0.0 -->
+				<ExhaustionWalk>        0.0       </ExhaustionWalk>       <!-- Default 0.0 -->
+				<ExhaustionSprint>      0.0       </ExhaustionSprint>     <!-- Default 0.1 -->
+				<ExhaustionSwim>        0.0       </ExhaustionSwim>       <!-- Default 0.01 -->
+				<ExhaustionIdle>        0.0       </ExhaustionIdle>       <!-- Default 0.0 -->
+			</Variant>
       
-      <Variant id="6"> <!-- Lead Boots (jumping and swimming are bad, sprinting is hard) -->
-        <!-- Food -->
-        <MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
-        <MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
-        <StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
-        <SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
-        <ExhaustionDrop>    4.0       </ExhaustionDrop>           <!-- Default 4.0 -->
-        <HealthTickCount>   40        </HealthTickCount>          <!-- Default 80 -->
-        <HealthTickCountSaturated> 40 </HealthTickCountSaturated> <!-- Default 10 -->
-        <HealLevel>         4         </HealLevel>                <!-- Default 18 -->
-        <StarveLevel>       0         </StarveLevel>              <!-- Default 0 -->
-        <SprintLevel>       0         </SprintLevel>              <!-- Default 6 -->
+			<Variant id="6"> <!-- Lead Boots (jumping and swimming are bad, sprinting is hard) -->
+				<!-- Food -->
+				<MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
+				<MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
+				<StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
+				<SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
+				<ExhaustionDrop>    4.0       </ExhaustionDrop>           <!-- Default 4.0 -->
+				<HealthTickCount>   40        </HealthTickCount>          <!-- Default 80 -->
+				<HealthTickCountSaturated> 40 </HealthTickCountSaturated> <!-- Default 10 -->
+				<HealLevel>         4         </HealLevel>                <!-- Default 18 -->
+				<StarveLevel>       0         </StarveLevel>              <!-- Default 0 -->
+				<SprintLevel>       0         </SprintLevel>              <!-- Default 6 -->
 
-        <!-- Action Exhaustion -->
-        <ExhaustionHeal>        4.0       </ExhaustionHeal>       <!-- Default 6.0 -->
-        <ExhaustionJump>        1.0       </ExhaustionJump>       <!-- Default 0.05 -->
-        <ExhaustionSprintJump>  2.5       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
-        <ExhaustionMine>        0.025     </ExhaustionMine>       <!-- Default 0.005 -->
-        <ExhaustionAttack>      0.3       </ExhaustionAttack>     <!-- Default 0.1 -->
-        <ExhaustionDamage>      0.1       </ExhaustionDamage>     <!-- Default 0.1 -->
-        <ExhaustionSneak>       0.04      </ExhaustionSneak>      <!-- Default 0.0 -->
-        <ExhaustionWalk>        0.04      </ExhaustionWalk>       <!-- Default 0.0 -->
-        <ExhaustionSprint>      0.2       </ExhaustionSprint>     <!-- Default 0.1 -->
-        <ExhaustionSwim>        0.5       </ExhaustionSwim>       <!-- Default 0.01 -->
-        <ExhaustionIdle>        0.004     </ExhaustionIdle>       <!-- Default 0.0 -->
-      </Variant>
+				<!-- Action Exhaustion -->
+				<ExhaustionHeal>        4.0       </ExhaustionHeal>       <!-- Default 6.0 -->
+				<ExhaustionJump>        1.0       </ExhaustionJump>       <!-- Default 0.05 -->
+				<ExhaustionSprintJump>  2.5       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
+				<ExhaustionMine>        0.025     </ExhaustionMine>       <!-- Default 0.005 -->
+				<ExhaustionAttack>      0.3       </ExhaustionAttack>     <!-- Default 0.1 -->
+				<ExhaustionDamage>      0.1       </ExhaustionDamage>     <!-- Default 0.1 -->
+				<ExhaustionSneak>       0.04      </ExhaustionSneak>      <!-- Default 0.0 -->
+				<ExhaustionWalk>        0.04      </ExhaustionWalk>       <!-- Default 0.0 -->
+				<ExhaustionSprint>      0.2       </ExhaustionSprint>     <!-- Default 0.1 -->
+				<ExhaustionSwim>        0.5       </ExhaustionSwim>       <!-- Default 0.01 -->
+				<ExhaustionIdle>        0.004     </ExhaustionIdle>       <!-- Default 0.0 -->
+			</Variant>
       
-      <Variant id="7"> <!-- Always Hungry -->
-        <!-- Food -->
-        <MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
-        <MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
-        <StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
-        <SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
-        <ExhaustionDrop>    1.5       </ExhaustionDrop>           <!-- Default 4.0 -->
-        <HealthTickCount>   40        </HealthTickCount>          <!-- Default 80 -->
-        <HealthTickCountSaturated> 40 </HealthTickCountSaturated> <!-- Default 10 -->
-        <HealLevel>         4         </HealLevel>                <!-- Default 18 -->
-        <StarveLevel>       0         </StarveLevel>              <!-- Default 0 -->
-        <SprintLevel>       0         </SprintLevel>              <!-- Default 6 -->
+			<Variant id="7"> <!-- Always Hungry -->
+				<!-- Food -->
+				<MaxFood>           20        </MaxFood>                  <!-- Default 20 -->
+				<MaxSaturation>     4.0       </MaxSaturation>            <!-- Default 20.0 -->
+				<StartSaturation>   4.0       </StartSaturation>          <!-- Default MaxSaturation / 4.0 -->
+				<SaturationFloor>   0.0       </SaturationFloor>          <!-- Default MaxSaturation / 8.0 -->
+				<ExhaustionDrop>    1.5       </ExhaustionDrop>           <!-- Default 4.0 -->
+				<HealthTickCount>   40        </HealthTickCount>          <!-- Default 80 -->
+				<HealthTickCountSaturated> 40 </HealthTickCountSaturated> <!-- Default 10 -->
+				<HealLevel>         4         </HealLevel>                <!-- Default 18 -->
+				<StarveLevel>       0         </StarveLevel>              <!-- Default 0 -->
+				<SprintLevel>       0         </SprintLevel>              <!-- Default 6 -->
 
-        <!-- Action Exhaustion -->
-        <ExhaustionHeal>        4.0       </ExhaustionHeal>       <!-- Default 6.0 -->
-        <ExhaustionJump>        0.2       </ExhaustionJump>       <!-- Default 0.05 -->
-        <ExhaustionSprintJump>  0.8       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
-        <ExhaustionMine>        0.025     </ExhaustionMine>       <!-- Default 0.005 -->
-        <ExhaustionAttack>      0.3       </ExhaustionAttack>     <!-- Default 0.1 -->
-        <ExhaustionDamage>      0.1       </ExhaustionDamage>     <!-- Default 0.1 -->
-        <ExhaustionSneak>       0.04      </ExhaustionSneak>      <!-- Default 0.0 -->
-        <ExhaustionWalk>        0.04      </ExhaustionWalk>       <!-- Default 0.0 -->
-        <ExhaustionSprint>      0.085     </ExhaustionSprint>     <!-- Default 0.1 -->
-        <ExhaustionSwim>        0.03      </ExhaustionSwim>       <!-- Default 0.01 -->
-        <ExhaustionIdle>        0.004     </ExhaustionIdle>       <!-- Default 0.0 -->
-      </Variant>
+				<!-- Action Exhaustion -->
+				<ExhaustionHeal>        4.0       </ExhaustionHeal>       <!-- Default 6.0 -->
+				<ExhaustionJump>        0.2       </ExhaustionJump>       <!-- Default 0.05 -->
+				<ExhaustionSprintJump>  0.8       </ExhaustionSprintJump> <!-- Default ExhaustionJump * 4.0 -->
+				<ExhaustionMine>        0.025     </ExhaustionMine>       <!-- Default 0.005 -->
+				<ExhaustionAttack>      0.3       </ExhaustionAttack>     <!-- Default 0.1 -->
+				<ExhaustionDamage>      0.1       </ExhaustionDamage>     <!-- Default 0.1 -->
+				<ExhaustionSneak>       0.04      </ExhaustionSneak>      <!-- Default 0.0 -->
+				<ExhaustionWalk>        0.04      </ExhaustionWalk>       <!-- Default 0.0 -->
+				<ExhaustionSprint>      0.085     </ExhaustionSprint>     <!-- Default 0.1 -->
+				<ExhaustionSwim>        0.03      </ExhaustionSwim>       <!-- Default 0.01 -->
+				<ExhaustionIdle>        0.004     </ExhaustionIdle>       <!-- Default 0.0 -->
+			</Variant>
 
 		</Variants>
 	
@@ -523,7 +523,6 @@
 	<LootSets>
 
 		<LootSet name="Normal">
-
 			<LootGroup name="StartItems" kpScore="20" distributionMethod="KitKPRandom">
 								
 				<!-- BASE KITS -->
@@ -1071,9 +1070,8 @@
 				
 				<ChestItem kpScore="3">
 					<Item id="440" aux="36" qty="5"/> <!-- Arrows of Poison 2 -->
-					</ChestItem>
-
-		 </LootGroup>
+				</ChestItem>
+		 	</LootGroup>
 		</LootSet>
 
 		<LootSet name="NoArmour">
@@ -1318,25 +1316,25 @@
 				<!-- Weapons and Armour 20% -->
 				<ChestItem minCount="1" maxCount="1" weight="6" playersForMin="0">        
 					<Item id="268"/>          <!-- Wooden Sword-->
-        </ChestItem>
-        <ChestItem minCount="1" maxCount="1" weight="6" playersForMin="0">
-          <Item id="271"/>          <!-- Wooden Axe-->
+        		</ChestItem>
+				<ChestItem minCount="1" maxCount="1" weight="6" playersForMin="0">
+					<Item id="271"/>          <!-- Wooden Axe-->
 				</ChestItem>
-        <ChestItem minCount="1" maxCount="1" weight="6" playersForMin="0">
-          <Item id="256"/>          <!-- Iron Shovel-->
+				<ChestItem minCount="1" maxCount="1" weight="6" playersForMin="0">
+					<Item id="256"/>          <!-- Iron Shovel-->
 				</ChestItem>
-        <ChestItem minCount="1" maxCount="1" weight="6" playersForMin="0">
-          <Item id="274"/>          <!-- Stone Pickaxe-->
+				<ChestItem minCount="1" maxCount="1" weight="6" playersForMin="0">
+					<Item id="274"/>          <!-- Stone Pickaxe-->
 				</ChestItem>
 				<ChestItem minCount="1" maxCount="1" weight="6" playersForMin="0">
 					<Item id ="261"/>         <!-- Bow -->
 				</ChestItem>
-        <ChestItem minCount="1" maxCount="1" weight="6" playersForMin="0">
-          <Item id="346" aux="40">
-            <!-- Fishing Rod - Knockback -->
-            <Enchantment id="19" level="1" override="true"/>
-          </Item>
-        </ChestItem>
+				<ChestItem minCount="1" maxCount="1" weight="6" playersForMin="0">
+					<Item id="346" aux="40">
+						<!-- Fishing Rod - Knockback -->
+						<Enchantment id="19" level="1" override="true"/>
+					</Item>
+				</ChestItem>
 
 				<!-- Specials 17%  -->
 				<ChestItem minCount="1" maxCount="1" weight="1">
@@ -1519,13 +1517,11 @@
 				
 				<ChestItem kpScore="3">
 					<Item id="440" aux="36" qty="5"/> <!-- Arrows of Poison 2 -->
-					</ChestItem>
-
-		 </LootGroup>
+				</ChestItem>
+		 	</LootGroup>
 		</LootSet>
 
 		<LootSet name="HighPower">
-
 			<LootGroup name="StartItems" kpScore="20" distributionMethod="KitKPRandom">
 								
 				<!-- BASE KITS -->
@@ -1862,7 +1858,6 @@
 			<!--  ****************************************************************  -->
 			
 			<LootGroup name="OuterItems" kpScore="20" distributionMethod="KitKPRandom">
-
 				<!-- Sword -->
 				<!-- 20% -->
 				<Kit weight="100" kpScore="10">
@@ -1943,7 +1938,6 @@
 					<Item id="440" aux="8" qty="5"/> <!-- Arrows of Weakness -->
 					<Item id="440" aux="10" qty="5"/> <!-- Arrows of Slowness -->
 				</ChestItem>
-
 			</LootGroup>
 
 			<!--  ****************************************************************  -->
@@ -2047,14 +2041,11 @@
 				<ChestItem kpScore="3">
 					<Item id="440" aux="36" qty="5"/> <!-- Arrows of Poison 2 -->
 				</ChestItem>
-
-		 </LootGroup>
+		 	</LootGroup>
 		</LootSet>
 
 		<LootSet name="Decayed">
-
 			<LootGroup name="StartItems" kpScore="20" distributionMethod="KitKPRandom">
-								
 				<!-- BASE KITS -->
 
 				<!-- Attributes -->
@@ -2291,7 +2282,6 @@
 				<ChestItem kpScore="4">
 					<Item id="320"/> <!-- Cooked Porkchop -->
 				</ChestItem>
-
 			</LootGroup>
 			
 			
@@ -2398,7 +2388,6 @@
 
 					<Item id="449"/> <!-- Totem of Undying -->
 				</ChestItem>
-
 			</LootGroup>
 
 			<!--  ****************************************************************  -->
@@ -2600,15 +2589,13 @@
 				
 				<ChestItem kpScore="3">
 					<Item id="440" aux="36" qty="5"/> <!-- Arrows of Poison 2 -->
-					</ChestItem>
-
+				</ChestItem>
 		 </LootGroup>
 		</LootSet>
 		
 		<LootSet name="Food Central">
 
 			<LootGroup name="StartItems" kpScore="20" distributionMethod="KitKPRandom">
-								
 				<!-- BASE KITS -->
 
 				<!-- Attributes -->
@@ -2793,7 +2780,6 @@
 				<ChestItem kpScore="1">
 					<Item id="434"/> <!-- Beetroot -->
 				</ChestItem>
-
 			</LootGroup>
 			
 			
@@ -2802,7 +2788,6 @@
 			<!--  ****************************************************************  -->
 
 			<LootGroup name="UpdateItems" kpScore="3" distributionMethod="WeightedRandom">
-
 				<!-- Food 80% -->
 				<ChestItem minCount="1" maxCount="1" weight="5">
 					<!-- 4J-JEV: Default auxValue = 0, qty = 1 -->
@@ -2843,7 +2828,6 @@
 					<Item id="441" aux="37"/> <!-- Lingering Potion of Healing -->
 					<Item id="441" aux="12"/> <!-- Lingering Potions of Harming -->
 				</ChestItem>
-
 			</LootGroup>
 
 			<!--  ****************************************************************  -->
@@ -2851,7 +2835,6 @@
 			<!--  ****************************************************************  -->
 			
 			<LootGroup name="OuterItems" kpScore="20" distributionMethod="KitKPRandom">
-
 				<!-- Sword -->
 				<!-- 20% -->
 				<Kit weight="100" kpScore="10">
@@ -2914,7 +2897,6 @@
 						<Enchantment id="0" level ="1" />
 					</Item>
 				</ChestItem>
-
 			</LootGroup>
 
 			<!--  ****************************************************************  -->
@@ -2922,7 +2904,6 @@
 			<!--  ****************************************************************  -->			
 
 			<LootGroup name="HVItems" kpScore="18" distributionMethod="KitKPGreedy">
-
 				<!-- Weapons and Armour -->
 				<!-- 4J-JEV: Default auxValue = 0, qty = 1 -->
 				<Kit weight="1" kpScore="10">

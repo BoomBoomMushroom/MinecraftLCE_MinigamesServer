@@ -196,7 +196,7 @@
 		<Exception id="141">false</Exception> <!-- carrots -->
 		<Exception id="161">false</Exception> <!-- leaves 2 -->
 		<Exception id="175">false</Exception> <!-- double plant" -->
-    <Exception id="79">false</Exception> <!-- Ice -->
+    	<Exception id="79">false</Exception> <!-- Ice -->
 	</BlockTicking>
 
 	<Timers>
@@ -237,16 +237,15 @@
 	</Sounds>
 
 	<ItemBalance>
-	 
 		<Item id="438">
 			<!-- Adjust potion range -->
 			<BaseDamage>1.5</BaseDamage>
 		</Item>
 
-    <Item id="441">
-      <!-- Adjust potion range -->
-      <BaseDamage>1.5</BaseDamage>
-    </Item>
+		<Item id="441">
+			<!-- Adjust potion range -->
+			<BaseDamage>1.5</BaseDamage>
+		</Item>
 
 	</ItemBalance>
 

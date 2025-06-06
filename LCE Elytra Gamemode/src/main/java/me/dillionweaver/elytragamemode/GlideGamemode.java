@@ -23,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
-import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,6 +49,7 @@ public final class GlideGamemode extends JavaPlugin {
     public List<Player> playerQueueTpToLobby = new ArrayList<>();
     public String currentMusicName = "";
 
+    public Player firstPlacePlayer = null;
     public HashMap<String, Integer> playerUUID_toCheckpointId = new HashMap<>();
     public HashMap<String, Boolean> playerUUID_toHasFinished = new HashMap<>();
     public HashMap<String, Long> playerUUID_toTimeCompleted = new HashMap<>();
@@ -394,6 +394,10 @@ public final class GlideGamemode extends JavaPlugin {
         int[] position = GlideConstants.checkpoints[lobbySpawnPoints[index]];
         Location newLoc = new Location(glideWorld, position[0], position[1], position[2]);
 
+        if(firstPlacePlayer == player){
+            newLoc = new Location(glideWorld, GlideConstants.lobbyWinnerSpawn[0], GlideConstants.lobbyWinnerSpawn[1], GlideConstants.lobbyWinnerSpawn[2]);
+        }
+
         player.teleport(newLoc);
         //player.setRotation(90, 0);
     }
@@ -426,6 +430,8 @@ public final class GlideGamemode extends JavaPlugin {
 
         canSetHealth = false;
         currentMusicName = "";
+
+        server.dispatchCommand(Bukkit.getConsoleSender(), "lmregeneratelobby glide_world");
     }
 
     public void update(){
@@ -602,6 +608,7 @@ public final class GlideGamemode extends JavaPlugin {
                 switch (playersWon){
                     case 1:
                         soundName = "finish_line_1st";
+                        firstPlacePlayer = player;
                         break;
                     case 2:
                         soundName = "finish_line_2nd";

@@ -40,19 +40,22 @@ public class LobbyManagerRegenerateLobby implements CommandExecutor {
             commandSender.sendMessage(coloredMessage);
             return false;
         }
-        if(args.length != 0){
-            String message = "&c"+ LobbyManagerConstants.pluginMessagePrefix +"Too many arguments. None are needed!";
+        if(args.length != 1){
+            String message = "&c"+ LobbyManagerConstants.pluginMessagePrefix +"Too many or little arguments. Only one is needed! /LMRegenerateLobby WORLD_NAME_KEY";
             String coloredMessage = ChatColor.translateAlternateColorCodes('&', message);
             commandSender.sendMessage(coloredMessage);
             return false;
         }
 
-        // world edit:, kill @e[type=!player]; schematic load lobby_new; paste AT_POSITION LobbyManagerConstants.lobbyCornerToPaste,
+        String worldNameKey = args[0];
+        World worldToPlace = main.worldNameToWorld.get(worldNameKey);
+
+        // world edit: kill @e[type=!player]; schematic load lobby_new; paste AT_POSITION LobbyManagerConstants.lobbyCornerToPaste,
 
         // load the schematic
         try {
             File schematicFile = new File(main.getDataFolder(), LobbyManagerConstants.lobbySchematicFilename);
-            Location toLocation = new Location(main.lobbyWorld, LobbyManagerConstants.lobbyCornerToPaste[0], LobbyManagerConstants.lobbyCornerToPaste[1], LobbyManagerConstants.lobbyCornerToPaste[2]);
+            Location toLocation = new Location(worldToPlace, LobbyManagerConstants.lobbyCornerToPaste[0], LobbyManagerConstants.lobbyCornerToPaste[1], LobbyManagerConstants.lobbyCornerToPaste[2]);
 
             EditSession session = createEditSession(toLocation.getWorld());
             ClipboardFormat format = ClipboardFormats.findByFile(schematicFile);
@@ -92,6 +95,8 @@ public class LobbyManagerRegenerateLobby implements CommandExecutor {
                     toLocation.getWorld().refreshChunk(x, z);
                 }
             }
+
+            commandSender.sendMessage(LobbyManagerConstants.pluginMessagePrefix + " Regenerated the Lobby in " + worldNameKey);
             // end
         } catch (final Throwable t){
             t.printStackTrace();

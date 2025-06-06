@@ -31,6 +31,7 @@ public class LobbyManagerConstants {
     // item slots: https://proxy.spigotmc.org/3d5ceb0e4998f49be1771df5d1bb62d6c68ebb41?url=https%3A%2F%2Fbugs.mojang.com%2Fsecure%2Fattachment%2F61101%2FItems_slot_number.jpg
     public static final int setLobbyHopItemSlot = 0;
     public static final double[] lobbyCornerToPaste = new double[] {-225, 4, -273};
+    public static final double[] otherLobbyCorner = new double[] {-426, 108, -435}; // used with lobbyCornerToPaste to get a bounding box for lobby players
     public static final double[] lobbyWinnerSpawn = new double[] {-363, 69, -341};
     public static final String pluginMessagePrefix = "[Lobby Manager] ";
     public static final String lobbySwitchGuiName = "Choose Lobby";

@@ -60,22 +60,22 @@ public class GlideConstants {
             new int[] { 2175, 96, 3069,  2177, 104, 3078,  2166, 102, 3072,  -90, 0, 8 }, // cavern
             new int[] { 2100, 94, 3112,  2073, 128, 3114,  2086, 112, 3092,  0, 0, 9 }, // cavern
 
-            new int[] { -334, 60, -352 }, // lobby                                                          25
-            new int[] { -334, 60, -346 }, // lobby
-            new int[] { -334, 60, -343 }, // lobby
-            new int[] { -334, 60, -340 }, // lobby
-            new int[] { -334, 60, -334 }, // lobby
-            new int[] { -328, 60, -334 }, // lobby                                                          30
-            new int[] { -325, 60, -334 }, // lobby
-            new int[] { -322, 60, -334 }, // lobby
-            new int[] { -317, 60, -334 }, // lobby
-            new int[] { -317, 60, -340 }, // lobby
-            new int[] { -317, 60, -343 }, // lobby                                                          35
-            new int[] { -317, 60, -346 }, // lobby
-            new int[] { -317, 60, -352 }, // lobby
-            new int[] { -322, 60, -352 }, // lobby
-            new int[] { -325, 60, -352 }, // lobby
-            new int[] { -328, 60, -352 }, // lobby                                                          40
+            new int[] { -341, 57, -341 }, // lobby                                                          25
+            new int[] { -341, 57, -332 }, // lobby
+            new int[] { -332, 57, -332 }, // lobby
+            new int[] { -324, 57, -332 }, // lobby
+            new int[] { -324, 57, -341 }, // lobby
+            new int[] { -324, 57, -350 }, // lobby                                                          30
+            new int[] { -332, 57, -350 }, // lobby
+            new int[] { -341, 57, -350 }, // lobby
+            new int[] { -341, 57, -344 }, // lobby
+            new int[] { -341, 57, -338 }, // lobby
+            new int[] { -335, 57, -332 }, // lobby                                                          35
+            new int[] { -329, 57, -332 }, // lobby
+            new int[] { -324, 57, -338 }, // lobby
+            new int[] { -324, 57, -344 }, // lobby
+            new int[] { -329, 57, -350 }, // lobby
+            new int[] { -335, 57, -350 }, // lobby                                                          40
 
             new int[] { 3138, 235, 2857,  3138, 235, 2857,  3138, 235, 2857, 0, 0, 0 }, // temple
             new int[] { 3167, 184, 3118,  3114, 218, 3120,  3138, 206, 3077, 0, 0, 1 }, // temple
@@ -404,6 +404,7 @@ public class GlideConstants {
     public static final int viewResultsItemSlot = 6;
     public static final int setReadyItemSlot = 7;
     public static final int mapVotingItemSlot = 8;
+    public static final double[] lobbyWinnerSpawn = new double[] {-363, 69, -341};
 
     public static final String pluginMessagePrefix = "[Glide] ";
     public static final String votingMenuTitle = "Vote for a map";

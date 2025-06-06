@@ -117,6 +117,7 @@ public class GlideStartGameCommand implements CommandExecutor {
         main.countdown = 3;
         main.mapId = mapId;
         main.playersWon = 0;
+        main.firstPlacePlayer = null;
 
         return true;
     }

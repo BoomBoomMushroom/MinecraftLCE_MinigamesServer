@@ -2,7 +2,7 @@ package me.dillionweaver.lobbymanager.player;
 
 import me.dillionweaver.lobbymanager.LobbyManager;
 import me.dillionweaver.lobbymanager.data.LobbyManagerConstants;
-import me.dillionweaver.lobbymanager.data.LobbyManagerHelperLists;
+import me.dillionweaver.lobbymanager.data.LobbyManagerHelper;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
@@ -17,13 +17,15 @@ import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitScheduler;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static me.dillionweaver.lobbymanager.data.LobbyManagerConstants.cannotDropItems;
 
 public class PlayerEvents implements Listener {
-
+    private Map<String, Boolean> lastRegenerated = new HashMap();
     private final LobbyManager main;
     public PlayerEvents(LobbyManager main){
         this.main = main;
@@ -41,14 +43,14 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void onLeave(PlayerQuitEvent event){
         Player player = event.getPlayer();
-        if(!main.isPlayerInGameWorld(player)){return;}
+        if(!main.isPlayerInLobbyBounds(player)){return;}
 
         main.playerOnLeft(player);
     }
 
     @EventHandler
     public void onFoodLevelChange(FoodLevelChangeEvent event){
-        if(!main.isPlayerInGameWorld((Player)event.getEntity())){return;}
+        if(!main.isPlayerInLobbyBounds((Player)event.getEntity())){return;}
 
         event.setCancelled(true);
         event.setFoodLevel(20);
@@ -57,7 +59,7 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void onDamageTaken(EntityDamageEvent event){
         if(event.getEntityType() == EntityType.PLAYER) {
-            if (!main.isPlayerInGameWorld((Player)event.getEntity())) {
+            if (!main.isPlayerInLobbyBounds((Player)event.getEntity())) {
                 return;
             }
         }
@@ -69,7 +71,7 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void onRegen(EntityRegainHealthEvent event){
         if(event.getEntityType() == EntityType.PLAYER){
-            if(!main.isPlayerInGameWorld((Player)event.getEntity())){
+            if(!main.isPlayerInLobbyBounds((Player)event.getEntity())){
                 return;
             }
         }
@@ -77,7 +79,7 @@ public class PlayerEvents implements Listener {
 
     @EventHandler
     public void onHangingBreakByEntity(HangingBreakByEntityEvent event){
-        if(event.getEntity().getLocation().getWorld().getUID() != main.lobbyWorld.getUID()){ return; } // Not our world so idc
+        if(main.isLocationInLobbyBounds(event.getEntity().getLocation())){ return; } // Not our world so idc
         if(event.getCause() == HangingBreakEvent.RemoveCause.ENTITY){
             // im assuming the entity breaking this is a player, only other possible one could be a ranged mob hitting it with their projectile but i don't see that happening.
             event.setCancelled(true);
@@ -87,7 +89,7 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void onManipulateArmorStand(PlayerArmorStandManipulateEvent event){
         Player player = event.getPlayer();
-        if(main.isPlayerInGameWorld(player) == false){ return; } // idc they're not in our world
+        if(main.isPlayerInLobbyBounds(player) == false){ return; } // idc they're not in our world
 
         if(event.getPlayer().isOp() == false){ // not admin
             event.setCancelled(true);
@@ -97,7 +99,7 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void playerBreaksBlock(BlockBreakEvent event){
         Player player = event.getPlayer();
-        if(!main.isPlayerInGameWorld(player)){return;}
+        if(!main.isPlayerInLobbyBounds(player)){return;}
 
         if(!player.isOp()){
             event.setCancelled(true);
@@ -120,7 +122,7 @@ public class PlayerEvents implements Listener {
             return;
         }
 
-        if(!main.isPlayerInGameWorld(player)){return;}
+        if(!main.isPlayerInLobbyBounds(player)){return;}
         if(playerAction == Action.RIGHT_CLICK_BLOCK){
             Material clickedBlockMaterial = event.getClickedBlock().getType();
             if(clickedBlockMaterial == Material.JUKEBOX && player.getGameMode() == GameMode.ADVENTURE){
@@ -144,7 +146,7 @@ public class PlayerEvents implements Listener {
 
 
             Material[] notAllowedToOpen = new Material[]{ Material.HOPPER, Material.DISPENSER };
-            if(LobbyManagerHelperLists.bracketListIncludes(notAllowedToOpen, clickedBlockMaterial) && player.isOp()==false){
+            if(LobbyManagerHelper.bracketListIncludes(notAllowedToOpen, clickedBlockMaterial) && player.isOp()==false){
                 event.setCancelled(true);
                 return;
             }
@@ -160,21 +162,21 @@ public class PlayerEvents implements Listener {
                 Material.CHEST,
                 Material.JUKEBOX,
         };
-        if(LobbyManagerHelperLists.bracketListIncludes(allowedToInteract, blockType) == false){
+        if(LobbyManagerHelper.bracketListIncludes(allowedToInteract, blockType) == false){
             event.setCancelled(LobbyManagerConstants.stopPlayerFromInteractingWithWhateverTheyWant);
         }
     }
 
     @EventHandler
     public void onFireSpread(BlockSpreadEvent event){
-        if(event.getBlock().getWorld().getUID() == main.lobbyWorld.getUID()){
+        if(main.isLocationInLobbyBounds(event.getBlock().getLocation())){
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onBlockIgnite(BlockIgniteEvent event){
-        if(event.getBlock().getWorld().getUID() == main.lobbyWorld.getUID()){
+        if(main.isLocationInLobbyBounds(event.getBlock().getLocation())){
             event.setCancelled(true);
         }
     }
@@ -182,7 +184,7 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void onBlockFade(BlockFadeEvent event){
         Block block = event.getBlock();
-        if(block.getWorld().getUID() == main.lobbyWorld.getUID()){
+        if(main.isLocationInLobbyBounds(block.getLocation())){
             event.setCancelled(true);
         }
     }
@@ -191,13 +193,13 @@ public class PlayerEvents implements Listener {
     public void dropItem(PlayerDropItemEvent event){
         Player player = event.getPlayer();
 
-        if(!main.isPlayerInGameWorld(player)){return;}
+        if(!main.isPlayerInLobbyBounds(player)){return;}
         if(!player.isOp()){
             event.setCancelled(LobbyManagerConstants.stopPlayerFromInteractingWithWhateverTheyWant);
         }
 
         Material itemType = event.getItemDrop().getItemStack().getType();
-        if(LobbyManagerHelperLists.bracketListIncludes(cannotDropItems, itemType)){
+        if(LobbyManagerHelper.bracketListIncludes(cannotDropItems, itemType)){
             event.setCancelled(true);
         }
     }
@@ -229,7 +231,7 @@ public class PlayerEvents implements Listener {
             return;
         }
         else {
-            if (!main.isPlayerInGameWorld(player)) { return; }
+            if (!main.isPlayerInLobbyBounds(player)) { return; }
         }
 
 
@@ -246,14 +248,14 @@ public class PlayerEvents implements Listener {
             event.setCancelled(true);
         }
 
-        if(LobbyManagerHelperLists.bracketListIncludes(cannotSwitchSlots, event.getSlot()) && isPlayerInventory){
+        if(LobbyManagerHelper.bracketListIncludes(cannotSwitchSlots, event.getSlot()) && isPlayerInventory){
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onCraft(CraftItemEvent event){
-        if(!main.isPlayerInGameWorld((Player)event.getWhoClicked())){return;}
+        if(!main.isPlayerInLobbyBounds((Player)event.getWhoClicked())){return;}
         event.setCancelled(true);
     }
 
@@ -263,7 +265,20 @@ public class PlayerEvents implements Listener {
         Location toLoc = event.getTo();
         World toWorld = toLoc.getWorld();
 
-        boolean isPlayerInOurWorld = main.playersInWorld.contains(player);
+        boolean isPlayerInOurWorld = event.getFrom().getWorld().getUID() == main.lobbyWorld.getUID();
+        int preTeleportAmountOfPlayers = toWorld.getPlayers().size();
+
+        // for some reason it calls the teleport twice so we need to flip flop between generating and not generating
+        if(preTeleportAmountOfPlayers == 0){
+            String worldName = toWorld.getName();
+            boolean wasLastGenerated = false;
+            if(lastRegenerated.get(worldName) != null) { wasLastGenerated = lastRegenerated.get(worldName); }
+            lastRegenerated.put(worldName, !wasLastGenerated);
+            if(wasLastGenerated == false){
+                // we are the first people going to world so let's regenerate lobby
+                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "LMRegenerateLobby " + worldName);
+            }
+        }
 
         if(isPlayerInOurWorld == false){
             if(toWorld.getUID() == main.lobbyWorld.getUID()){
@@ -280,6 +295,6 @@ public class PlayerEvents implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event){
-        if(!main.isPlayerInGameWorld(event.getPlayer())){ return; }
+        if(!main.isPlayerInLobbyBounds(event.getPlayer())){ return; }
     }
 }

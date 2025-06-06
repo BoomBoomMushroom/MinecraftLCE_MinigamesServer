@@ -9,7 +9,7 @@
 	<HostOptions version="3">
 		<!-- 4J-JEV: Incrementing version number resets all options to default values. -->
 
-		<!-- ORDER OF MATCHMAKING FILTERS IS IMPORTANT -->
+		<!-- OR	DER OF MATCHMAKING FILTERS IS IMPORTANT -->
 		<!-- Game length (default values count from 1) -->
 		<MatchmakingFilter default="1">
 			<!-- IRRELEVANT -->
@@ -29,15 +29,15 @@
 			</Variant>
 		</MatchmakingFilter>
 
-	<!-- Max Players (default values count from 1) -->
-	<MatchmakingFilter default="2">
-		<Variant>
-			<MaxPlayers value="8"/>
-		</Variant>
-		<Variant>
-			<MaxPlayers value="16"/>
-		</Variant>
-	</MatchmakingFilter>
+		<!-- Max Players (default values count from 1) -->
+		<MatchmakingFilter default="2">
+			<Variant>
+				<MaxPlayers value="8"/>
+			</Variant>
+			<Variant>
+				<MaxPlayers value="16"/>
+			</Variant>
+		</MatchmakingFilter>
 	
 		<!-- Irrelevant -->
 		<RoundLength default="180">180</RoundLength>
